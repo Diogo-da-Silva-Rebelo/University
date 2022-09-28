@@ -1,0 +1,64 @@
+3.
+Uma vez que se fala em "ordenação natural", utiliza-se um compareTo,
+implementado com "Comparable"
+
+Em classe Imovel, adiciona-se:
+ public class Imovel implements Serializable, Comparable <Imovel>{
+    (...)
+         public int compareTo(Imovel i1){
+            if ((i1.getprecoBase) > this.precoBase) return 1;
+            else if ((i1.getprecoBase) < this.precoBase){
+                return -1;
+            } else {
+                return 0;
+            }
+         }
+     (...)
+ }
+
+ 4.
+ O cabeçalho da class POOAirBnB passa a ser:
+ public class POOAirBnB implements Serializable, Ordena Imoveis{
+ (...)
+ //pois OrdenaImoveis é uma interface de POOAirBnB.
+     private List<Imovel> ordenaImovel(Comparator <Imovel> c){
+        List<Imovel> IList = new ArrayList<>();
+        List<Imovel> imovelList = new ArrayList<Imovel>(this.imoveis.values());
+
+        IList.addAll(imovelList);
+        Collections.sort(x,c);
+     }
+      # Esta interface tem como métodos o de ordenarPorTipoArea Logo, a classe POOAirBnB
+      tem de ter este método implementado de igual modo, como uma espécie de contrato
+      se a classe implementar "isto", então, como resultado há "ordenação por tipo de imóveis".
+
+ (...)
+    public List<Imovel> imoveisPorTipoArea(){
+            List<Imovel> x = ordenaImovel(new ComparaTipo());
+            Collections.sort(x, new ComparaArea());
+            return x;
+        }
+ }
+
+5.
+//Ler
+private POOAirBnb readObj (String filename) throws FileNotFoundException, IOException, ClassNotFoundException{
+    *1: criar apontador de leitura para o ficheiro;
+    FileInputStream in = new FileInoutStream(filename);
+    *2: criar apontador de leitura para objecto;
+    ObjectInputStream o = new ObjectInputStream(in);
+    *3: efetuar a leitura:
+    POOAirBnB p = (POOAirBnb) o.readObject();
+    *4: fechar apontador
+    o.close();
+    return p;
+}
+
+//Gravar
+private void writeObj(String filename) throws FileNotFoundException, IOException{
+        FileOutputStream out = new FileOutputStream(filename);
+        ObjectOutputStream o = new ObjectOutputStream(out);
+        o.writeObject(this);
+        o.flush();
+        o.close();
+    }

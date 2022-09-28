@@ -1,0 +1,93 @@
+public class ListaEleitoral {
+private String partidoPolitico;
+private Set < Candidato > eleitos; // candidatos da lista ja eleitos
+private List < Candidato > porEleger; // candidatos ainda por eleger
+...
+}
+//Assumir existência da Classe Candidado.
+
+//1
+(a)
+public ListaEleitoral(String partido, Collection<Candidato> candidatos){
+    this.partidoPolitico = partido; //setPartidoPolitico(partido);
+    this.eleitos = new HashSet<Candidato>();
+    this.porEleger = new ArrayList<Candidato>(candidatos); //setCandidatos(candidatos)
+}
+
+(b)
+public Candidato aEleger() throw CandidadoInexistenteException(){
+    if (!this.porEleger.isEmpty()) return this.porEleger.get(0).clone();
+    else throw new CandidadoInexistenteException();
+}
+
+(c)
+public void elege(){
+    try {
+        Candidato cand = this.aEleger();
+        this.porEleger.remove(cand);
+        this.eleitos.add(cand);
+    }
+    catch (CandidadoInexistenteException e){
+        System.out.println("Não existem candidados por eleger.");
+    }
+}
+
+(d)
+public void elege(int n){
+    int listSize = this.porEleger.size();
+    int i;
+    if (n <= listSize){
+        for (i = 0; i < n; i++) this.elege();
+    }
+    else System.out.println("Lista inalterada");
+}
+
+(e)
+public Collection<Candidatos> candidatos(){
+    List<Candidato> todosCandidatos = new ArrayList<Candidato> ();
+
+    for (Candidato c: this.eleitos){
+        todosCandidatos.add(c.clone());
+    }
+
+    for(Candidato c : this.porEleger){
+        todosCandidatos.add(c.clone());
+    }
+    return todosCandidatos;
+    }
+
+//2
+(a)
+    public TreeSet<Candidato> eleitos(){
+        Set<Candidato> ordCand = new TreeSet<Candidado>();
+
+        for(Candidato c: this.eleitos){
+            ordCand.add(c.clone());
+        }
+        return ordCand;
+    }
+
+(b)
+    //definir novo método de comparação entre Candidatos
+    public CompareTo (Candidato c2){
+        return (this.getNome().compareTo(c2.getNome());
+    }
+
+(c)
+public class OrdenaIdadeNome implements Comparator<Candidato>{
+    public int compare(Candidato c1, Candidato c2){
+        if (c1.getIdade()<c2.getIdade()) return -1;
+        if (c1.getIdade()>c2.getIdade()) return 1;
+        else return c1.compareTo(c2);
+    }
+}
+
+public TreeSet<Candidatos> eleitos(){
+      Set<Candidato> eleitos = new TreeSet<candidato>(new OrdenaIdadeNome());
+
+      for (Candidato c: this.eleitos.getEleitos()) {
+            eleitos.add(c.clone());
+      }
+
+      return eleitos.
+}

@@ -1,0 +1,53 @@
+Guião1
+- deveríamos criar o fd em cada função (idealmente);
+- ver se dá erro no open, seek e write;
+
+- Passos de new person:
+-> abrir ficheiro, criando fd;
+-> lseek para final;
+-> structs;
+-> escrever;
+
+- DETERMINAR TAMANHO DO FICHEIRO PARA SABER POSIÇÃO
+-> int pos = lseek(seek_CUR) e return pos - sizeof(struct Pessoa) e return pos/sizeof(struct Pessoa);
+-> int pos = lseek(fd, -(sizeof(struct Pessoa)),SEEK_CUR);
+
+- Passos de update person:
+-> fd = open; (o open volta a pos = 0 - inicio do ficheiro);
+-> for(read);
+    -> comparar(p.name, name);
+    -> se for V: p.idade = nova_idade;
+    -> lseek 1 struct para trás;
+    -> escrever
+    -> fechar
+
+- Passos person age v2:
+    -> open;
+    -> lseek (SEEK_SET);
+    -> read (se assumirmos que não sabemos o nome);
+    -> p.idade = idade;
+    -> lseek (-sizeof(struct Pessoas)), SEEK_CUR);
+    -> escrever;
+
+Guião2
+- um processo é quem corre os nossos programas;
+- um programa pode chamar um ou mais processos;
+- cada processo tem um identificador único e um espaço de endereçamento;
+- o endereçamento de um processo é composto por 3 zonas:
+ -> code;
+ -> heap;
+ -> stack;
+- os processos estão organizados numa hierarquia;
+- um processo é sempre criado com o "fork";
+- Quando criamos um novo processo, é feita uma cópia do Pai no Filho!! Mas atenção que essas variáveis não são iguais
+então se uma variável do Pai se alterar, a do Filho não se altera necessariamente!
+- Se o Pai tinha feito um open, então, o processo do Filho vai ter o descritor do ficheiro que foi aberto pelo processo Pai;
+
+- Chamada do sistema fork;
+- a função fork não tem argumentos e retorna o PID do processo Filho ao processo Pai;
+ -> o processo Filho fica com 0;
+ -> -1 em caso de erro;
+
+- Boas práticas:
+ -> o processo filho deve terminar sempre com _exit para que não afete nada do processo pai;
+ -> status guarda o valor do _exit() que o filho deu;

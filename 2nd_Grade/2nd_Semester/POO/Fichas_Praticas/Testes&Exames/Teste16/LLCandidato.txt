@@ -1,0 +1,56 @@
+//implementação de uma lista ligada de Candidatos
+public class Node{
+    Candidato candidado;
+    Node prox;
+}
+
+public class LLCandidato {
+    private Node primeiro;
+    private int size;
+
+    public LLCandidato(){
+        this.primeiro = null;
+        this.size = 0;
+    }
+
+    public int size(){
+        return this.size;
+    }
+
+    public void add(Cndidato c){
+        this.size++;
+        Node newC = new Node (c, this.primeiro);
+        this.primeiro = novo;
+    }
+    //Nodo == Lista == l
+    public Candidato get(int i) throws CandidatoException{
+        if (i > this.size || i < 0) throws new CandidatoException();
+        else {
+            Node nodo = this.primeiro.clone();
+            Candidato candidato = null;
+
+            while(Node && i > size){
+                nodo = nodo.getProximo();
+                i--;
+            }
+            candidato = nodo.getCandidato();
+        }
+       return candidato;
+    }
+
+    public boolean equals(Object o){
+        //verificar se o objeto que entra é do tipo objeto (tal como o que é argumento de instância);
+        if (this == o) return true;
+
+        //verificar se são de classes diferentes ou se o objeto que deu entrada é nulo;
+        if (this.getClass() != o.getClass() || o == null) return false;
+
+        //operação de cast
+        LLCandidato llc = (LLCandidato) o;
+
+        //verificar se os parâmetro do objeto são iguais
+        if (this.size == llc.size) return (this.primeiro.equals(llc.primeiro));
+
+        return false;
+    }
+}

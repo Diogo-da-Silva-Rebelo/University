@@ -1,0 +1,176 @@
+public abstract class Empregado implements Iterable, Serializable, Comparable{
+    public String codigo;
+    public String nome;
+    public int dias;
+    public static double salDia = 50.00;
+
+    //getters & setters
+    public static double getSalDia() {
+        return this.salDia;
+    }
+
+    public static void setSalDia(double nvSalDia) {
+    salDia = nvSalDia;
+    }
+
+    public String getNome() {
+    return nome;
+    }
+
+    public void setNome(String nome){
+    this.nome = nome;
+    }
+
+    public String getCodigo() {
+    return codigo;
+    }
+
+    public void setCodigo(String codigo){
+    this.codigo = codigo;
+    }
+
+    public int getDias() {
+    return dias;
+    }
+
+    public void setDias(int dias){
+    this.dias = dias;
+    }
+
+    //Construtores
+    public Empregado(){
+    this.codigo = "";
+    this.nome = "";
+    this.dias = 0;
+    }
+
+    public Empregado(Empregado e){
+    this.codigo = e.getCodigo();
+    this.nome = e.getNome();
+    this.dias= e.getDias();
+    }
+
+    //statics não precisa de ser parâmetro
+    public Empregado(String cod, String nom, int dias) {
+    this.codigo = cod; this.nome = nom; this.dias = dias;
+    }
+
+    //abstratos
+    //O salario varia consoante o tipo de Empregado!
+    public abstract double salario();
+
+    //métodos devem ser definidos na subclasse!
+    public abstract String toString();
+    public abstract Empregado clone();
+
+    //Equals
+    public boolean equals(object obj){
+        if (this == obj) return true;
+        if (obj == null | obj.getClass() != this.getClass()) return false;
+        Empregado e = (Empregado) obj;
+        return this.nome.equals(e.getNome()) &&
+               this.codigo.equals(e.getCodigo()) &&
+               this.dias.equals(e.getDias());
+    }
+
+    //decrescentemente por salario
+    public int compareTo(Empregado e2){
+    if (this.salario < e2.getSalario()) return 1;
+    else if (this.salario == e2.getSalario()) return 0;
+    else return 1;
+}
+
+public class Normal extends Empregado{
+    //Construtores + getters + setters
+    public Normal (Normal n){
+    super(n);
+    }
+
+    public Normal (){
+    super();
+    }
+
+    //construtor parametrizado recebe os atributos herdados e os seus!
+    public Normal (String nome, String codigo, int dias){
+        super(nome,codigo,dias);
+    }
+
+    public Normal clone(){
+        return new Normal(this);
+    }
+
+    public toString(){
+    return "Normal: " + this.getNome() + "-" + "this.getCodigo" + "-" + this.getDias + "-" + this.salario() + "\n";
+    }
+}
+
+public abstract class Gestor extends Empregado{
+    private double premio;
+
+    //Construtores + getters + setter assim como definidos para Normal
+
+    //Implementação dos métodos abstratos!
+    //toString
+    //clone
+
+    //salario
+    public double salario(){
+        return this.getDias*this.getSalDia*this.premio;
+    }
+}
+
+public abstract class Motorista extends Empregado{
+    private static valKm = 10.00;
+    private double kmPer;
+
+    //Construtores + getters + setter
+
+    //Implementação de abstratos
+    //clone
+    //toString
+
+    //salaio
+    public double salario(){
+    return this.getDias*this.getSalDias + this.valKm*this.kmPer;
+    }
+}
+
+//Não é extends porque não nos é sugerido nada no enunciado!
+public class EmpresaSet{
+    private TreeSet<Empregado> empregados;
+
+public boolean existeEmpregado(String cod){
+    for (Empregado e: this.empregados){
+        if (e.getCodigo().equals(cod)) return true;
+    }
+    return false;
+    }
+
+public Empregado getEmpregado(String cod){
+    for (Empregado e: this.empregados){
+        if (e.getCodigo().equals(cod)) return e.clone;
+    }
+
+    return null;
+}
+
+public void addEmpregado(Empregado e) throws EmpregadoExistenteException {
+    if(!this.empregados.contains(e)) this.empregados.add(e.clone);
+    throws new EmpregadoExistenteException();
+}
+
+public Iterator<Empregado> listaPorOrdemDecrescenteSalario(){
+    //método 1
+    Comparator<Empregado> bySalario = Comparator.comparing(Empregado::getSalario);
+    this.empregados.sort(bySalario.reversed());
+
+    //método 2
+    //Alterar ordem natural para decrescente
+    //implementar compareTo em class Empregado
+    this.empregados.sort();
+
+    Iterator<Empregado> itr = this.empregados.iterator();
+    return itr;
+    }
+}
+}

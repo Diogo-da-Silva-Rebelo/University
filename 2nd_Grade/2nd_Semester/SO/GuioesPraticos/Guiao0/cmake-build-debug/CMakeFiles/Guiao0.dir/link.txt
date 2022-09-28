@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/Guiao0.dir/main.c.o CMakeFiles/Guiao0.dir/API.c.o  -o Guiao0 

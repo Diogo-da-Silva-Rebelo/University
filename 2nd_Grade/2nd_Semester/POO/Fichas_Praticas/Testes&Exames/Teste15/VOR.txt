@@ -1,0 +1,53 @@
+package Teste15;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class VOR{
+    //a)
+    private List<Equipa> equipas;
+    private int num_equipas;
+
+    //b)
+    public Barco getBarco(String idEquipa, String idBarco) throws InvalidBoatException{
+        Barco barco = new Barco();
+
+        for(Equipa e: this.equipas){
+            if (e.getNome().equals(idEquipa)){
+                if (e.getBarcos().containsKey(idBarco)) {
+                    return barco = e.getBarcos().get(idBarco).clone();
+                }
+                else throw new InvalidBoatException();
+            }
+            else throw new InvalidBoatException();
+        }
+        return null;
+    }
+
+    //c)
+    List<Barco> getBarcos(String idEquipa, double milhas){
+        List<Barco> baux = new ArrayList<Barco>();
+
+        for (Equipa e: this.equipas){
+            if (e.getNome().equals(idEquipa)){
+                for (Barco b : e.getBarcos().values()){
+                    if (b.getMilhas() > milhas){
+                        baux.add(b.clone());
+                    }
+                }
+            }
+        }
+        return baux;
+    }
+
+    //d)
+    void removeBarco(String idEquipa, String idBarco) throws InvalidBoatException{
+        for (Equipa e: this.equipas){
+            if (e.getNome().equals(idEquipa)) {
+                if (e.getBarcos().containsKey(idBarco)) {
+                    e.getBarcos().remove(idBarco);
+                } else throw new InvalidBoatException();
+            } else throw new InvalidBoatException();
+        }
+    }
+}

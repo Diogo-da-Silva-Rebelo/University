@@ -1,0 +1,15 @@
+(a)
+linha 4: está a ser efetuada uma comparação entre dois objetos ao nível das suas classes.
+Primeiro, verifica-se se o objeto que deu entrada existe (não é nulo).
+Depois, verifica-se se a classe do objeto instanciado é diferente da classe do objeto que deu entrada no método equals.
+
+linha 7: é criado um novo objeto do tipo Aluno, através de uma operação de casting para o tipo Aluno do objeto de entrada.
+Isto garante que os dois objetos em comparação são agora do mesmo tipo de dados.
+
+linha 8: são feitas as comparações para verificar se os atributos dos dois objetos são iguais (nome, nota e número).
+Se forem iguais é retornado TRUE, caso contrário, é retornado FALSE.
+
+(b)
+O equals da superclase dá o resultado esperado, pois, independentemente de estarmos a ir para um método de um tipo de dados mais genérico
+ou de estarmos a fazer um cast para um tipo de dados mais genérico (independentemente do tipo de dados, sendo estes compatíveis),
+a sua clase nunca muda, é sempre a classe do construtor que criou esse objeto.

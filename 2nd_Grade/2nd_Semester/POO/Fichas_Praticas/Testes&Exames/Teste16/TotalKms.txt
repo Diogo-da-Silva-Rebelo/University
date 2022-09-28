@@ -1,0 +1,35 @@
+/**
+* Total de Km percorridos por todos os Motoristas.
+*/
+
+//Internal Iterator
+public double qtsKmsTotal() {
+    return this.empregados.values().stream().filter(e->e instanceof Motorista).mapToDouble(e->((Motorista)e).getNKms()).sum();
+}
+
+//External Iterator
+public double qtsKmsTotal() {
+
+Objeto -> Iterador -> hasNext();
+
+    private double result = 0.0;
+
+    //Porque não sabemos o tipo dos "empregados"
+    Collection<Object> c = this.empregados.values();
+
+    //Iterador
+    Iterator<Object> itr = c.iterator();
+    Object e;
+
+    while(itr.hasNext()){
+        e = itr.next()
+
+        if(e instance of Motorista) kms += ((Motorista) e).getKms();
+        }
+
+    return result;
+    }
+
+
+
+}

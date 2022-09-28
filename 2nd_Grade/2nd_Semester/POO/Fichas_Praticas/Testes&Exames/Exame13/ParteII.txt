@@ -1,0 +1,76 @@
+public class SMS extends Mensagem {
+private static int MAX_SIZE = 160;
+private long numberId;
+private int totalParts;
+// um SMS com mais caracteres que MAX_SIZE  ́e partido
+// em v ́arios de at ́e esse tamanho e custa o valor dos v ́arios
+// SMS de tamanho normal
+private int number;
+...
+}
+
+public class EMail extends Mensagem {
+private String format;
+...
+}
+
+public class Telefonema extends Comunicacao {
+private int duracao;
+...
+}
+
+public class ComunicacoesMoveis {
+//número/remetente - Lista de comunicações ordenadas
+private HashMap<String,ArrayList<Comunicacao>> comms;
+...
+
+//a
+public void adComunicacao(Comunicacao com) throws ComunicacaoExiste{
+String clientID = comms.getRemetente();
+    if (comms.containsKey(clientID)){
+        if (comms.get(clientID).contains(com)) throws new ComunicaçãoExiste();
+        else comms.get(clientID).add(com.clone);
+    }
+    else {
+        String newClientID = com.getRemetente();
+        List<Comunicacao> newComm = new ArrayList<>();
+
+        newComm.add(com.clone);
+        comms.put(newClientID,newComm);
+    }
+}
+
+//Conversão de datas para LocalDate
+                GregorianCalendar gdata = c.getData();
+                LocalDate date = date.of(gdata.getYear(), gdata.getMonth(), gdata.getDay());
+                assertThat(date.getYear()).isEqualTo(gdata.getYear());
+                assertThat(date.getMonthValue()).isEqualTo(gdata.getMonth());
+                assertThat(date.getDayOfMonth()).isEqualTo(gdata.getDay());
+
+//b
+/*
+Chamadas - duração
+Emails - qtd de careteres
+SMS - 7cent/sms (sms grande partido em pequenos)
+*/
+public int factura(String numeroOriginador, GregorianCalendar inicio, GregorianCalendar fim){
+int res = 0;
+
+if (comms.containsKey(numeroOriginador)){
+    List<Comunicacao> com = this.comms.get(numeroOriginador);
+    if (!com) return res;
+    //compareDates verifica se uma data está entre outras duas
+    //fazer função auxíliar.
+    if (compareDates(c.getData(),inicio,fim) == 1){
+        for (Comunicacao c : com){
+            if (c instanceof Telefonema) res + = (c.getDuracao());
+            if (c instanceof EMail) res + = (c.getFormat().length);
+            if (c instanceof SMS) res + = (c.getTotalParts()*0.7);
+        }
+    }
+    }
+}
+return res;
+}
+}
+

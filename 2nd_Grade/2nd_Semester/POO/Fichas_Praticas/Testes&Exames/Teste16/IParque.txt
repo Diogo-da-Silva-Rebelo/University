@@ -1,0 +1,24 @@
+public inteface IParque {
+    public void entra (String cartao , String matricula) throws SemPermissaoException ;
+    public void sai ( String matricula ) throws VeiculoNaoExisteException ;
+    public boolean noParque ( String matricula );
+    public boolean equals();
+}
+
+public class ParqueComRecusados extends Parque implements IParque{
+   private Map<String,Set<String>> recusadas;
+
+    public ParqueComRecusados(ParqueComRecusados p){
+            this.recusados = p.getRecusas();
+        }
+
+    public Map<String, Set<String>> getRecusas(){
+         Map<String, Set<String>> aux = new HashMap<String, Set<String>>();
+                for(String s : this.recusados.keySet()){
+                    Set<String> x = this.recusados.get(s);
+                    aux.put(s, x);
+                }
+                return aux;
+            }
+    }
+}

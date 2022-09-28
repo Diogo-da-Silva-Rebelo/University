@@ -1,0 +1,14 @@
+[
+	{
+		 "id_aluno": "a1",
+		 "nome": "Aysha Melanie Gilberto",
+		 "curso": "LEI",
+		 "tpc1": ["12-05-2001", "15-6-2006", "16-05-1998", "23-8-1780"]
+	},
+	{
+		 "id_aluno": "a2",
+		 "nome": "Igor André Cantanhede",
+		 "curso": "ENGFIS",
+		 "tpc1": ["12-05-2004", "15-6-2003", "16-05-2009"]
+	}
+]

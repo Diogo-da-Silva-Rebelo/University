@@ -1,0 +1,193 @@
+//Esta parte é alusiva às questões de desenvolvimento de código
+
+public interface Playable {
+        public void play();
+    }
+
+public class Episodio implements Playable{
+    private String nome;
+    private double duracao;
+    private int classificacao; //dada pelos seus ouvintes (valor de 0..100)
+    private List<String> conteudo; //corresponde ao texto que e’ dito
+    //quando se reproduz o episodio
+    private int numeroVezesTocada; //qts vezes e’ que o podcast foi ouvido
+    private LocalDateTime ultimaVez; //regista quando foi reproduzido
+    //ultima vez
+...
+...
+
+    //11
+    //toca-> função que faz a transformação
+    public void play(){
+    //método1
+        this.conteudo.forEach(s -> System.media.toca(s));
+    //método2
+        for (String s : this.conteudo){
+            System.media.toca(s);
+    }
+}
+
+
+public class Podcast{
+    private String nome;
+    private List<Episodio> episodios;
+    ...
+
+}
+
+public class Utilizador{
+    private String email;
+    private String nome;
+    private List<Podcast> subscritos;
+    ...
+    //13
+    //Método abstrato definido na subclass
+    public abstract void playEpisodio(String idPodCast, String nomeEpisodio) throws AlreadyPlayingException;
+}
+
+//13
+public class UtilizadorPremium extends Utilizador, EpisodioVideo{
+    private Queue<Episodio> filaEpisodios;
+    private Episodio epiAReproduzir;
+    //a reproduzir = 1; sem reproduzir = 0
+    private int estado;
+
+    public void playEpisodio(String idPodCast, String nomeEpisodio) throws AlreadyPlayingException{
+        if (this.estado == 1) {
+            System.out.println("Já estamos a reproduzir o Episódio " + this.epiAReproduzir.getNome().toString + "\n");
+            //adicionar este episódio à fila de espera de reprodução
+            this.filaEpisodios.add(this.epiPorPodName.get(idPodCast).filter(episodios -> nomeEpisodio.equals(episodios.getNome())).findAny().orElse(null));
+            throws new AlreadyPlayingException();
+        }
+        else {
+            //o estado passa para 1 pois vamos reproduzir
+            this.estado = 1;
+            //removemos da fila de espera
+             this.filaEpisodios.remove();
+            //reproduzimos esse episódio
+            Episodio new = this.epiPorPodName.get(idPodCast).filter(e -> nomeEpisodio.equals(e.getNome())).findAny().orElse(null));
+            this.epiAReproduzir = new.clone;
+            new.play();
+            //estado passa para 0 pois já não estamos a reproduzir
+            this.estado = 0;
+            this.epiAReproduzir = null;
+        }
+    }
+}
+
+public class SpotifyPOO{
+    //<nome do PodCast, Lista de Episódios>
+    private Map<String,List<Episodio>> epiPorPodName;
+    private List<Utilizador> utilizadores;
+    ...
+
+    //6
+    public List<Episodio> getEpisodios(String nomePodcast){
+        return this.epiPorPodName.get(nomePodcast).stream().map(Episodio::clone).collect(Collectors.toList());
+    }
+
+    //8
+    public void remove(String nomeP) throws PodcastInexistente, PodcastSubscrito {
+        if (this.epiPorPodName.get(nomeP) == null)
+            throws new PodcastInexistente();
+        else {
+            for (Utilizador u : this.utilizadores){
+                for (Podcast p: u.getSubscritos()){
+                    if (p.getNome.equals(nomeP)) throws new PodcastSubscrito();
+                }
+            }
+            this.getEpiPorName().remove(nomeP);
+        }
+    }
+
+    //9
+    public Episodio getEpisodioMaisLongo(String u){
+    List<Episodio> episodiosLongos = new ArrayList<>();
+       for (Utilizador u : this.utilizadores){
+        if (u.getNome().equals(u)) {
+            for (Podcast p: u.getSubscritos()){
+                Episodio longo = p.getEpisodios().sort(Comparator.comparing(Episodio::getDuracao())).get(0);
+                episodes.add(longo.clone);
+            }
+        }
+       }
+       Episodio maxEpisode = episodiosLongos.sort(Comparator.comparing(Episodio::getDuracao())).get(0);
+        return maxEpisode;
+    }
+
+    //10
+    public Map<Integer,List<Episodio>> episodiosPorClassf(){
+        //0,Episodios com 0
+        //1,EPisodio com 1
+        //...
+
+        //Lista com todos os episódios
+        List<Episodio> allEpisodes = new ArrayList<>();
+        for (List<Episodio> s: this.epiPorPodName.values()){
+            for (Episodio e : s){
+                allEpisodes.add(e.clone);
+            }
+        }
+
+        //Agrupar num Map, consoante a classificação
+        Map<Integer,List<Episodio>> final = allEpisodes
+                                            .stream()
+                                            .collect
+                                            (Collectors
+                                            .groupingBy
+                                            (Episodio::getClassificação));
+        return final;
+   }
+
+   //14
+   //colocar implements Serializable na classe
+       public void gravaInfoEpisodiosParaTocarMaisTarde(String fich) throws IOException{
+       try{
+           PrintWriter out = new PrintWriter(fich);
+           for (Utilizador u : this.utilizadores){
+                if (u instanceof UtilizadorPremium){
+                    out.println(u.getNomeId());
+                    for (Episodio e: u.getFilaEpisodios()){
+                        out.println(e.getNome());
+                    }
+                 }
+           }
+           out.flush();
+           out.close();
+
+           } catch(IOException e){
+                return null;
+           }
+       }
+}
+
+//12
+public class EpisodioVideo extends Episodio implements Playable{
+    private Byte[] visualBytes;
+    private Byte[] audioBytes;
+
+    public EpisodioVideo(Byte[] visualBytes, Byte[] audioBytes){
+       for (int i = 0; i < visualBytes.size(); i++){
+        this.visualBytes[i] = visualBytes[i].clone();
+       }
+       for (int j = 0; j < audioBytes.size(); j++){
+        this.audioBytes[i] = audioBytes[i].clone();
+       }
+       //Método2
+       this.visualBytes = Arrays.copyOf(visualBytes,visualBytes.size());
+       this.audioBytes = Arrays.copyOf(audiBytes,audioBytes.size());
+    }
+
+    //Tratar primeiro do video e só depois do som
+    public void play(){
+         for (int i = 0; i < visualBytes.size(); i++){
+             System.media.mostra(this.visualBytes[i]);
+         }
+
+         for (int j = 0; j < audioBytes.size(); j++){
+              System.media.toca(this.audioBytes[i]);
+         }
+    }
+}
+
+

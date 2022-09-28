@@ -1,0 +1,70 @@
+//Admita-se a existência de uma classe Carro:
+public class Carro {
+    private String numeroCarro;
+    private int lugares;
+    ...
+}
+--------------------------------------------------------------------------
+public interface AcessoParque {
+public void entra(Carro v) throws ParqueCheioException;
+public void sai(String numeroCarro) throws CarroNaoExisteException;
+}
+
+//a
+//Não desenvolvi métodos porque só pedia para declarar.
+public class ParqueFechado implements AcessoParque{
+    List<Carro> carrosNoParque;
+    private static final LOTACAOMAX = 50;
+    private int lotacaoAtual;
+
+//getters & setters & construtores
+...
+
+//métodos
+//Vamos assumir que este "Carro" já está definido
+public void entra(Carro v) throws ParqueCheioException{
+//code
+}
+
+public void sai(String numeroCarro) throws CarroNaoExisteException{
+//code
+}
+}
+
+//b
+public class ParqueComFilaDeEspera implements AcessoParque extends ParqueFechado{
+    private Queue<Carro> carrosEmEspera;
+
+public void entra(Carro v) throws ParqueCheioException, CarroExistenteException{
+if (this.getlotacaoAtual() < this.getLOTACAOMAX()){
+    if (this.getCarrosNoParque().contains(v)) throws CarroExistenteException();
+    else {
+    //remove Head da lista de espera
+     this.carrosEmEspera.remove();
+    //adiciona ao parque
+    this.carrosNoParque.add(v.clone);
+    }
+}
+else throws new ParqueCheioException();
+}
+
+public void sai(String numeroCarro) throws CarroNaoExisteException{
+    if (!this.getCarrosNoParque().contains(v)) throws CarroNaoExistenteException();
+    else {
+    //remover do parque
+    this.carrosNoParque.removeIf(e -> e.getNumeroCarro.equals(numeroCarro));
+    //adiciona à fila de espera
+    this.carrosEmEspera.add(v.clone);
+    }
+}
+}
+
+//retorna uma cópia do apontador da lista
+Collection<String> getElementosEmFila(){
+    Queue<Carro> new = new LinkedList<>();
+    Iterator itr = this.carrosEmEspera.iterator();
+    while (itr.hasNext()){
+        new.add(iterator.next().clone());
+    }
+    return new;
+}

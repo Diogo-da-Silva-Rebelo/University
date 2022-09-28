@@ -1,0 +1,256 @@
+DSS PL - 13 out
+Organização lógica em três camadas principais, onde podemos substituir elementos sem alterar os outros
+- camada de apresentação: ui
+- camada de acesso a dados: data
+- camada de lógica de negócios: business
+
+Opção de manutenção da interação com o utilizador via terminal
+A própria organização das classes permite a comunicação entre os componentes: As interfaces obrigam à implementação
+destes métodos na classe que é implementada.
+
+Métodos que configuram as pré-condições e os handlers.
+
+-------------------
+Diagrama de classes| ----> ver caderno
+-------------------
+
+DSS PL - 20 out
+1. Existência de um Problema;
+2. Apresentação do Modelo de Domínio;
+3. Este modelo pode ser convertido num Diagrama de Classes
+No caso da Ficha 1, este foi obtido através da solução em JAVA.
+Contudo, pode ser pedido para ser feito este modelo e só depois
+a implementação do código.
+
+Modelo de Domínio               |          UML - Diagrama de Classes
+   - Entidade;                  |              - Classe;
+   - Relacionamentos;           |              - Associação;
+   - Mais subjetivo;            |              - Mínimo de atributos & operações;
+   - Representa só a estrutura;
+
+No trabalho prático é suposto apresentar um Modelo de Domínio, todavia, podem e vão surgir
+aspetos que farão com que este modelo seja alterado no futuro.
+
+! Queremos um modelo para representar o problema (A partir da informação no texto)
+! Queremos um modelo para representar a solução (A partir da solução em código - JAVA)
+
+* - 0 ou mais;
+"tem" tem pouca semântica, devemos sempre usar um verbo com mais informação;
+
+Podemos assumir que existem utilizadores que possuem e alteram os docs
+
+Entidades:
+ - Documento
+ - Texto
+ - Imagem
+ - Video
+
+DSS PL - 27 out:
+Modelação de Requesitos Funcionais
+- Diagramas de Use Case (atores, use cases e associações ator - Use Case)
+    - Notação UML (Visual Paradigm)
+- Descrição dos fluxos principais (com alternativas, opções)
+    - textual enumerado, tabelas, ... (editor de texto, MS Word, latex,...)
+
+Etapas sugeridas:
+1. Identificar atores e use cases
+2. Elaborar o diagrama de use case
+3. Especificar/Descrever cada um dos use cases identificados
+4. Rever o diagrama de use case, introduzindo operadores caso seja necessário
+
+- Um caso de uso pode incluir mais do que um cenário
+- Normalmente não se sabe bem a implementação, mas sabe-se o que se pretende que o sistema
+faça, logo, é importante definir para começar o "Sistema", nomeando-o especificamente (CAP: Cobrança Automática
+de Portagens)
+- Os atores ficam foram do Sistema, não ficando dentro da zona deste.
+
+Exercício 3.2.3 - CAP
+Vamos fazer o exercício de acordo com as etapas que fizemos antes.
+1:
+Tabela informal apenas de apoio à obtenção do diagrama Use case:
+- Cliente ... descrição;
+              Pesquisar movimentos;
+              Listar movimentos;
+              Obter extrato mensal;
+              Efetuar autenticação;
+Este ator foi só considerado para termos mais um ator.
+- Gestor ...  Alterar tabela de preços; (adicional aos cenários) --> caso "implícito", que pode ser considerado
+- Pórtico ... descrição;
+              Registar passagem de viatura
+
+ATENÇÃO:
+- Utilização de Extend (não usar ou tentar não usar) vs Include (usar) --> ver caderno
+- Não há interação com o utilizador!
+- Se está nos cenários deve estar refletidos nos casos de uso
+
+Use case: Registar passagem de viatura:
+- Cenários: ver enunciado cenários 1 e 2;
+- Pré-condição: true (não tem pré-condições)
+- Pós-condição: o sistema fica com mais um registo de passagem na base de dados
+- Fluxo Normal:
+    1. Pórtico comunica número do identificador (e o número do pórtico);
+    2. Sistema valida que o identificador está registado;
+    3. Sistema regista o identificador, data e hora (e o número do pórtico);
+- Fluxo Alternativo 1 [Identificador não conhecido] (passo 2)
+    2.1 sistema comunica que o identificador não consta na base de dados
+    2.2 pórtico envia fotografia para posterior análise
+    2.4 sistema cria registo com fotografia, data e hora (e número do pórtico)
+- Fluxo Alternativo 2 [Pórtico não conseguiu ler o identificador] (passo 1)
+    1.1 pórtico envia fotografia para posterior análise
+    1.2 sistema cria registo com fotografia, data e hora (e número de pórtico)
+    --------------------------------------------------------------------------------
+    1.3. passa para 2.2
+- Fluxo de Exceção 3 [Pórtico não conseguiu enviar fotografia] (passo 2.2)
+    2.2.1 sistema comunica falha na receção da fotografia
+    2.2.2 sistema cancela o registo de passagem (quem paga?) X
+
+Alternativo - leva à realização da pós-condição.
+Exceção - à partida a pós condição não será satisfeita.
+
+Exercício 3.2.3 - Biblioteca:
+- Tendo multa: fluxo alternativo
+Tem multa? Sim (alternativo)
+Não pagou? Não (exceção)
+Utente não existe - fluxo de exceção
+----------------------------------------
+Ator            | Use case             |
+----------------------------------------
+Utente          | pesquisar livros     |
+                | reservar livros      |
+                | ...                  |
+----------------------------------------
+
+- Use case: Registar requesição de livro
+- Cenários ... ver enunciado ... Cenários 1, 2 e 3 (ex 3.2.2)
+- Pré condição: funcionário está autenticado
+- Pós-condição: o sistema fica com mais um registo de requesição efetuado
+- Fluxo normal:
+    1. Funcionário fornece o código do utente e código do livro
+    2. Sistema verifica que o utente é válido
+    3. Sistema verifica a disponibilidade do livro
+- Fluxo de exceção 1 [utente não existe no sistema] (passo 1)
+    2.1 Sistema informa que o utente não existe na base de dados
+    2.2 <<include>> UC criar novo registo... ou usar fluxo alternativo com o tal "voltar para 3".
+
+DSS PL - 3 nov:
+Identificação de APIs e subsistemas (Diagramas de Componentes/Interfaces)
+método de passagem sistemática de UCs para DSS:
+    1. Dividimos os fluxos em sequências de transações
+    2. Identificamos responsabilidades da lógica de negócio
+    3. Identificamos métodos
+    4. Agrupamos métodos em sub-sistemas
+
+--------------------------------------------------------------- MODELO EM TABELA ---------------------------------------------------------------------------------------------------------------------------------------------------------
+USE CASE: registar a requesição do livro
+CENÁRIOS: Cenário 1, 2...,3...
+PRÉ-CONDIÇÃO: funcionário autenticado
+PÓS-CONDIÇÃO: sistema com registo de requesição efetuada
+FLUXO NORMAL:                                                                                           RESPONSABILIDADES DA LN                        DEFINIR API/IDENTIFICAR MÉTODOS                          IDENTIFICAR SUBSISTEMAS
+                1. funcionário fornece o código de utente e código do livro                             (UI)                                           (UI)                                                     (UI)
+                2. sistema verifica que o utente é válido                                               verificar se o utente existe                   validarUtente(codUtente: String): Boolean                subUtilizador
+                3. sistema verifica que o utente não tem multas por pagar                               verificar se o utente tem multas por pagar     validarMultasPorPagar(codUtente: String): Boolean        subUtilizador
+                4. sistema verifica a disponibilidade do livro                                          verificar disponibilidade do livro             validarDisponibilidade(codUtente: String): Boolean       subCatalogo
+                5. sistema regista a requesição do livro pelo utente e atualiza o estado do livro       registar requesição do livro                   registarRequesição(livro: String, utente: String)        subRequesições
+                6. sistema calcula a data prevista de devolução                                         calcuçar a data de entrega                     calcularDataEntrega(codReq: String): Date                subRequesições
+                7. sistema imprime o talão comprovativo da requesição                                   imprimir talão                                 imprimirTalaoRequesicao(codReq: String)                  subRequesições
+
+FLUXO DE EXCEÇÃO: (1) [utente não existe no sistema] (passo 2)
+                2.1 sistema informa que utente não existe                                               (UI)                                           (UI)                                                     (UI)
+                2.2 sistema cancela requesição                                                          cancela requesição                             cancelaRequesicao()                                      subRequesições
+
+FLUXO ALTERNATIVO: (2) (passo 3)
+                3.1 sistema calcula multa e informa funcionário                                          __| calcular valor total da multa por pagar   calcularTotalMultas(utente: String): Float               subUtilizador
+                3.2 funcionário comunica pagamento                                                      (UI)                                           (UI)                                                     (UI)
+                3.3 sistema prolonga empréstimo dos livros em atraso                                    prolongar empréstimo                           prolongarEmpréstimosAtraso(utente: String)               subUtilizador
+                3.4 regressa ao passo 4
+
+FLUXO DE EXCEÇÃO: (3) 3.2 - fluxo alternativo 2)
+                3.2.1 utente não pagou
+                3.2.2 sistema cancela subscrição
+
+FLUXO DE EXCEÇÃO: (4) [livro não pode ser requesitado] (passo 4)
+                4.1 sistema informa que o livro não pode ser requesitado
+                4.2 sistema cancela a requesição
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+! Como fazer se pretendesemos saber qual funcionário tratou do processo?
+R: Poderímos passar o funcionário como variável necessária para a requesição do livro, registando-o.
+   Poderíamos ter o funcionário como variável de instância ou atributo.
+
+DSS PL - 17 nov:
+Ex 5.2.4 foi feito, mas apaguei :c
+Operand -> obj != null
+
+DSS PL - 24 nov:
+OCL - predicados que são avaliados durante a execução do sistema, e surgem associados a um determinado
+método de uma classe, sob a forma de uma pré-condição e sob a forma de resultado que vamos indicar
+nesse contexto.
+
+Exercício relativo aos parques de estacionamento (...4)
+2.
+Pripriedade 1 : Todos os registos de um parque são relativos a viaturas registadas no sistema.
+    Resposta:
+        context GesPark
+        inv: true
+        (no sentido em que a propriedade é garantida por construção do sistema)
+
+Propriedade 2 : Todos os registos são relativos a parques registados no sistema.
+    Resposta:
+        context: GesPark
+        inv: ParquesRegistados:
+            self.todos_registos-->forAll(r
+                self.todos_parques-->includes(r.parque))
+
+        Convenção:
+        self: refere-se à instância do contexto (é o "this" na notação OCL)
+        para simplificar consideramos todos_registos e todos_parques como Collections (em vez de Maps)
+
+Propriedade 3 : especificar "montante a pagar(idViatura,...)"
+    Resposta:
+        context: GestPark::montanteAPagar(idViatura : String, de: LocalDateTime, ate: LocalDateTime) : float
+        pre: ViaturaRegistada:
+            self.identificadores-->includes(idViatura)
+
+    Resposta (mais precisa):
+        context: GestPark::montanteAPagar(idViatura : String, de: LocalDateTime, ate: LocalDateTime) : float
+        pre: ViaturaRegistada:
+            self.identificadores-->exists((idViatura))
+
+DSS PL - 15 dez
+Resolução da ficha 7.
+Abstraindo em relação à dimensão da Stack (número de elementos atualmente guardados) conseguimos identificar os
+seguintes estados:
+    E1: Stack vazia
+    E2: Stack com elementos
+
+Máquinas de Estados:
+Aqui pretende-se representar dentro de uma classe os estados possíveis para um objeto.
+Nem em todas as classes se consegue identificar um conjunto de estados significativos.
+Vamos então fazer a máquina de estados para uma dada classe! A stack.
+Em cada estado, na sua especificação, há invariantes que são verificados sempre que
+se chega a esse estado. Entre cada estado temos: "E[G]/A".
+
+
+ ----    E[G]/A   ----
+| E1 | --------> | E2 |    Onde:  E: Evento; A: Ação == Effect; G: Guarda.
+ ----             ----
+
+ Tabela representativa das operações possíveis em cada ESTADO:
+------------------------------------------------------------------
+|Operações                      |E1                 |E2          |
+------------------------------------------------------------------
+|public void push(BIlhete b);   | ok                | ok         |
+------------------------------------------------------------------
+|public void pop();             | no                | ok         |
+------------------------------------------------------------------
+|public Bilhete top();          | no                | ok         |
+------------------------------------------------------------------
+|public boolean isEmpty();      | ok                | ok         |
+------------------------------------------------------------------
+
+
+
+
+
+
+

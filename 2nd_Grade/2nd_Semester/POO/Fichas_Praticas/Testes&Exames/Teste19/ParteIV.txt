@@ -1,0 +1,65 @@
+(a)
+public void addArco(String vOrig, String vDest){
+        Map<String, Set<String>> aux = this.getAdj();
+        Set<String> x = aux.get(vOrig);
+        x.add(vDest);
+        aux.put(vOrig, x);
+}
+
+(b) int size(){
+    /* Ordem de ideias:
+    1. Obter n = numero de vértices = numero de keys
+    1.1 Obter KeySet;
+    1.2 Obter dimensão do KeySet = n
+    2. Obter m = numero de arcos
+    2.1 Obter ValueSet
+    2.2 Iterar pelo Set
+    2.3 Iterar pelo Set de arcos
+    2.4 Se for diferente, incrementar
+    3. Somar m + n
+    */
+
+int n = 0;
+int m = 0;
+List<String> arcosUsados = new ArrayList<>();
+
+   n = this.adj.KeySet().size;
+   List<Set<String>> valueSet = new ArrayList<>(this.adj.values());
+
+   for (Set<String> set : valueSet){
+        for(String arco : set){
+            if (arcosUsados.isEmpty){
+                arcosUsados.add(arco);
+                m++;
+            } else{
+                if (arcosUsados.contains(arco) == False){
+                    arcosUsados.add(arco);
+                    m++;
+              }
+            }
+          }
+        }
+   return (m+n);
+}
+
+(c)
+public boolean haCaminhoDireto(String vOrig, String vDest){
+        return adj.get(vOrig).contains(vDest);
+}
+
+public boolean haCaminhoCCiclos(String vOrig, String vDest){
+        Set<String>visitados=new TreeSet<>();
+        return travessia(vOrig,vDest,visitados);
+}
+
+public boolean travessia(String vOrig,String vDest,Set<String>visitados){
+        visitados.add(vOrig);
+        Set<String> adjacentes=adj.get(vOrig);
+        if(adjacentes.contains(vDest))return true;
+        boolean res=false;
+        for(String nodo:adjacentes){
+            if(!visitados.contains(nodo))res=travessia(nodo,vDest,visitados);
+            if(res)break;
+        }
+    return res;
+}

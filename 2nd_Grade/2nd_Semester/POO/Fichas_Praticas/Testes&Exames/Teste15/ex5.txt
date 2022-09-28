@@ -1,0 +1,44 @@
+(b)
+public Set<Barco> barcosCsegurpo()
+{
+      Set<Barco> cSeguro = new TreeSet<Barco>(new ValorComparator());
+      for (Barco b : this.getBarcos.values()) {
+            if (b instanceOf BarcoCatamaran){
+                  if((BarcoCatamaran)b.getSeguro()) cSeguro.add(b.clone());
+            }
+            if (b instanceOf BarcoHibrido){
+                  if((BarcoHibrido)b.getSeguro()) cSeguro.add(b.clone());
+            }
+      }
+
+      return cSeguro;
+
+}
+
+public class ValorComparator extends Comparator<Barco>
+{
+      public int compare (Barco b1, Barco b2){
+            if(b1.getValorSeguro()>b2.getValorSeguro()) return 1;
+            if(b1.getValorSeguro()==b2.getValorSeguro()) return 0;
+            if(b1.getValorSeguro()<b2.getValorSeguro()) return -1;
+      }
+}
+
+(c)
+public void gravaFicheiroTextoSeguraveis (String fich)
+{
+      try{
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fich));
+
+             for (Equipa e : this.getEquipas() ) {
+                  for (Barco b : e.getBarcos.values())
+                        if (b instanceOf BarcoCatamaran || b instanceOf BarcoHibrido) oos.writeObject(b);
+            }
+
+            oos.flush();
+            oos.close();
+      }
+      catch(IOException e){
+            System.ou.println(e.getMessage());
+      }
+}

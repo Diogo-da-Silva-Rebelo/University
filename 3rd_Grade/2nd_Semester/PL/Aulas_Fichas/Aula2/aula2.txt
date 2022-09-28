@@ -1,0 +1,36 @@
+Onde utilizamos expressões regulares: compiladores, ficheiros,...
+Aceder a https://natura.di.uminho.pt/~jj/pl-22 e descarregar o ficheiro de música.
+
+Conceitos de Revisão:
+    abc : procurar a sequência de careteres "abc"
+    abc|xyz : procurar abc ou xyz, ou seja, (abc)|(xyz)
+    [abc] = a|b|c
+    [a-x0-9] = a|b|...|0|...|9
+    [^0-9]
+    . : Todos menos o fim de linha = [^\n]
+    + : 1 a inf
+    * : 0 a inf
+    ? : 0 a 1
+    {7} : 7 a 7
+    {3,7} : 3 a 7
+    ^... : no inicio da linha
+
+Comando usados na aula:
+    ^[^:]*[0-9]{4} :
+     +$ : 1 ou mais espaços no final da linha
+    -p -> readline, transforma, print line
+    sed -rn '/title:/ s!title:!!p' grande.txt |wc -l
+    sed -rn '/author:/ s!author: !!p' grande.txt | sed -r 's!\s*;\s*!\n!g' | sort | uniq -c | sort -n
+    sed -rn '/<abc>/,/<.abc>/p' grande.txt > x.abc
+    grep -P -zo '<abc>.*' grande.txt (mostra só abcs)
+    grep -P -zo '<abc>(.*\n)*?</abc>' grande.txt
+    grep -P -zo '<abc>[^<]*</abc>' grande.txt
+    <.?abc> procurar <qualquercoisaabc>
+    sed efetua substituições.
+regex101.com: ferramenta para testar expressões regulares
+
+TPC:
+- capturar acordes de viola no ficheiro "grande.txt", considerando que estão em linha após 2 espaços.
+- 2 exercícios inventados neste contexto: Escolhor algo a extrair, escrever enunciado e resolução.
+- arranjar enunciado e solução nossa.
+- instalar abcmidi.

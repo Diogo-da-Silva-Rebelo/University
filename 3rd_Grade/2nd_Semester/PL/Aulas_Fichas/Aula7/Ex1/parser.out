@@ -1,0 +1,145 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> Frase
+Rule 1     Frase -> LIMI Elementos LIMF
+Rule 2     Elementos -> Elementos SEP Elemento
+Rule 3     Elementos -> Elemento
+Rule 4     Elementos -> empty
+Rule 5     Elemento -> NUM
+Rule 6     Elemento -> START
+Rule 7     Elemento -> END
+Rule 8     empty -> <empty>
+
+Terminals, with rules where they appear
+
+END                  : 7
+LIMF                 : 1
+LIMI                 : 1
+NUM                  : 5
+SEP                  : 2
+START                : 6
+error                : 
+
+Nonterminals, with rules where they appear
+
+Elemento             : 2 3
+Elementos            : 1 2
+Frase                : 0
+empty                : 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Frase
+    (1) Frase -> . LIMI Elementos LIMF
+
+    LIMI            shift and go to state 2
+
+    Frase                          shift and go to state 1
+
+state 1
+
+    (0) S' -> Frase .
+
+
+
+state 2
+
+    (1) Frase -> LIMI . Elementos LIMF
+    (2) Elementos -> . Elementos SEP Elemento
+    (3) Elementos -> . Elemento
+    (4) Elementos -> . empty
+    (5) Elemento -> . NUM
+    (6) Elemento -> . START
+    (7) Elemento -> . END
+    (8) empty -> .
+
+    NUM             shift and go to state 6
+    START           shift and go to state 7
+    END             shift and go to state 8
+    LIMF            reduce using rule 8 (empty -> .)
+    SEP             reduce using rule 8 (empty -> .)
+
+    Elementos                      shift and go to state 3
+    Elemento                       shift and go to state 4
+    empty                          shift and go to state 5
+
+state 3
+
+    (1) Frase -> LIMI Elementos . LIMF
+    (2) Elementos -> Elementos . SEP Elemento
+
+    LIMF            shift and go to state 9
+    SEP             shift and go to state 10
+
+
+state 4
+
+    (3) Elementos -> Elemento .
+
+    LIMF            reduce using rule 3 (Elementos -> Elemento .)
+    SEP             reduce using rule 3 (Elementos -> Elemento .)
+
+
+state 5
+
+    (4) Elementos -> empty .
+
+    LIMF            reduce using rule 4 (Elementos -> empty .)
+    SEP             reduce using rule 4 (Elementos -> empty .)
+
+
+state 6
+
+    (5) Elemento -> NUM .
+
+    LIMF            reduce using rule 5 (Elemento -> NUM .)
+    SEP             reduce using rule 5 (Elemento -> NUM .)
+
+
+state 7
+
+    (6) Elemento -> START .
+
+    LIMF            reduce using rule 6 (Elemento -> START .)
+    SEP             reduce using rule 6 (Elemento -> START .)
+
+
+state 8
+
+    (7) Elemento -> END .
+
+    LIMF            reduce using rule 7 (Elemento -> END .)
+    SEP             reduce using rule 7 (Elemento -> END .)
+
+
+state 9
+
+    (1) Frase -> LIMI Elementos LIMF .
+
+    $end            reduce using rule 1 (Frase -> LIMI Elementos LIMF .)
+
+
+state 10
+
+    (2) Elementos -> Elementos SEP . Elemento
+    (5) Elemento -> . NUM
+    (6) Elemento -> . START
+    (7) Elemento -> . END
+
+    NUM             shift and go to state 6
+    START           shift and go to state 7
+    END             shift and go to state 8
+
+    Elemento                       shift and go to state 11
+
+state 11
+
+    (2) Elementos -> Elementos SEP Elemento .
+
+    LIMF            reduce using rule 2 (Elementos -> Elementos SEP Elemento .)
+    SEP             reduce using rule 2 (Elementos -> Elementos SEP Elemento .)
+

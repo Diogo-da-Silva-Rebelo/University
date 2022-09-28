@@ -1,0 +1,80 @@
+public class Corrida {
+...
+private ArrayList<TreeMap<String,Tempo>> temposPorVolta;
+
+//a
+//Não percebi a cena das voltas 2 e 3, porque o objetivo é ordenar os tempos
+//para uma volta e não entre voltas...
+//indice == volta
+// [------------volta1----------------;----------------volta2-------------; ... ]
+// [car1 - tempo1, car2 - tempo2, ... ; car1 - tempo 1, car2 - tempo 2,...; ... ]
+
+//lista de carros ordenados pela sua classificação numa "volta"
+public List<String> classificacaoNaVolta(int volta) throws VoltaInexistente{
+//treeMap com os temos e carros da respetiva volta
+    TreeMap<String,Tempo> carPerTme = this.temposPorVolta.get(volta);
+    List<String> desistentes = new ArrayList<>();
+    List<String> new = new ArrayList<>();
+
+    if (!carPerTime) throws new VoltaInexistente();
+
+    for (String s : carPerTime){
+        if (carPerTime.get(s) == null){
+            desistentes.add(s);
+            continue;
+    }
+    new.add(s);
+    }
+    //Ordenação
+    Collections.sort(new, new Comparator<Tempo>)(){
+       public int compare(Tempo t1, Tempo t2){
+            if (t1.getMinutos > t2.getMinutos) return -1;
+            else if (t1.getMinutos == t2.getMinutos) {
+                if (t1.getSegundos > t2.getSegundos) return -1;
+                else if (t1.getSegundos == t2.getSegundos) return 0;
+                else return 1;
+            }
+            else return 1;
+       }
+    }
+    //desistentes ficam no fim, pela ordem que aparecem
+     new.addAll(desistentes);
+}
+
+//b
+public Tempo tempoRecorde(){
+    Map<Tempo,Integer> BestTimePorVolta = new HashMap<>();
+    List<Tempo> tempos = new ArrayList<>();
+    for(int i = 0; i < this.temposPorVolta.size(); i++){
+    List<String> carsPorVolta = classificaçãoNaVolta(i);
+    String firstCar = carsPorVolta.get(0);
+    Tempo firstCarTime = this.temposPorVolta.get(i).get(firstCar);
+    BestTimePorVolta.put(firstCarTime,i);
+    tempos.add(firstCarTime.clone);
+    }
+
+    //Ir à lista de tempos e ordenar
+    //Copiei o comparador de cima já feito
+    Collections.sort(new, new Comparator<Tempo>)(){
+           public int compare(Tempo t1, Tempo t2){
+                if (t1.getMinutos > t2.getMinutos) return -1;
+                else if (t1.getMinutos == t2.getMinutos) {
+                    if (t1.getSegundos > t2.getSegundos) return -1;
+                    else if (t1.getSegundos == t2.getSegundos) return 0;
+                    else return 1;
+                }
+                else return 1;
+           }
+    }
+
+    //retirar o menor (o do índice 0)
+    //Ir ao map e ver a volta com este tempo
+    return (BestTimePorVolta.get(tempos.get(0)));
+}
+
+//that was tough ugh
+
+public class Tempo {
+private int minutos;
+private int segundos;
+}

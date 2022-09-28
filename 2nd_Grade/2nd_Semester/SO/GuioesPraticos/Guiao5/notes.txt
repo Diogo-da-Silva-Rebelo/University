@@ -1,0 +1,23 @@
+- Processo unidirecional;
+- Pipes são muito utilizados para poder redirecionar o stdout para um determinado local. Por exemplo, se fizermos
+ls | less -> redireciona-se o comando ls para o editor de texto "less";
+- int fildes[2] : array de dois inteiros (descritores de read & write);
+- Quando a função pipe retorna, ela colocou lá os descritores e atribui um número a cada descritor (consoante o dado);
+- Comunicação entre pai e filho, com troca de comunicação:
+    - pipe;
+    - fork;
+    - pensar que descritores fechar com "default";
+    - filho com as mesmas características do pai;
+    - ao ler o descritor do filho e ao escrevê-la no descritor do pai estamos a trocar informação;
+    - esta troca é unidirecional;
+    - 1 (write), 0 (read);
+    -> pipe; switch; default;
+    -> pipe; line; status; buf;
+- havendo 1 ou mais extremos de escrita abertos, cria-se um ciclo infinito;
+- devemos, assim, fechar os decritores de escrita & leitura;
+- nunca redirecionar o stdin para o extremos de escrita e vice-versa:
+    - stdout é sempre direcionado para o write;
+    - stdin é sempre direcionado para o read;
+- Operação de read é bloqueante: se não existirem dados no pipe para ler & o extremo de escrita esa aberto, bloqueia;
+- Operação de write também é bloqueante!
+- Ver revisão do guião4.

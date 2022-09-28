@@ -1,0 +1,3 @@
+/home/purp/CLionProjects/Computacao-Grafica/Aula2_Pirâmide/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/purp/CLionProjects/Computacao-Grafica/Aula2_Pirâmide/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/purp/CLionProjects/Computacao-Grafica/Aula2_Pirâmide/cmake-build-debug/CMakeFiles/class2.dir

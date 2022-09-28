@@ -1,0 +1,90 @@
+Pesquisa Não Informada:
+1. DFS (Depth First Search):
+    - Ideia base: primeiro em profundidade. Avançar no grafo/árvore (em profundidade) enquanto for possível;
+    - Senão, recuar (backtrack) e tentar alternativamente outros caminhos (em profundidade também).
+    - Estrutura de dados requerida muito simples e leve (lista com nodos visitados ou caminho atual).
+    - Não garante o caminho mais curto ou com menos passos em primeiro lugar.
+
+1.1 Implementação em prolog:
+dfs(Orig,Dest,Cam) :-
+    dfs2(Orig,Dest,[Orig],Cam).
+
+% condição final: nodo atual = destino
+dfs2(Dest,Dest,LA,Cam):-
+    % caminho atual está invertido
+    reverse(LA,Cam).
+
+dfs2(Act,Dest,LA,Cam):-
+    % testar ligação entre ponto atual e um qualquer X
+    connect(Act,X),
+    % testar nao circularidade p/ não visitar nodos já visitados
+    \+member(X,LA),
+    % chamada recursiva
+    dfs2(X,Dest,[X|LA],Cam).
+
+2. BFS (Breath First Search):
+    - Ideia base: primeiro em largura. A partir de um nodo são explorados todos os nós adjacentes.
+    - Posteriormente, são explorados os nodos acessíveis através dos adjacentes (nível seguinte) e assim sucessivamente.
+    - Estrutura de dados requerida pesada: requerido armazenar todos os caminhos que ainda podem ser expandidos (fila de caminhos).
+    - Garante o caminho com menos passos encontrado em primeiro lugar/solução ótima e mínima.
+
+2.1 Implementação em prolog:
+bfs(Orig,Dest,Cam):- bfs2(Dest,[Orig],Cam).
+
+%condicao final: destino = nó à cabeça do caminho actual
+bfs2(Dest,[[Dest|T]|_],Cam):-
+    %caminho actual está invertido
+    reverse([Dest|T],Cam).
+
+bfs2(Dest,[LA|Outros],Cam):-
+    LA=[Act|_],
+    % calcular todos os nós adjacentes nao visitados e
+    % gerar um caminho novo c/ cada nó e caminho actual
+    findall([X|LA],
+    (Dest\==Act,connect(Act,X),\+ member(X,LA)),Novos),
+    % novos caminhos são colocados no inicio da lista p/ exploracao imediata
+    append(Novos, Outros, Todos),
+    % chamada recursiva
+    bfs2(Dest,Todos,Cam).
+
+Pesquisa Informada:
+1. A*:
+    - Ideia Base: possibilidade de utilizar uma função estimativa com a
+     contabilização de custos acumulados conhecidos.
+    - Primeiro caminho produzido é obrigatoriamente o melhor.
+    sensível à distância do nodo atual ao nodo destino.
+
+1.1 Implementação A*:
+aStar(Orig,Dest,Cam,Custo):-
+    aStar2(Dest,[(_,0,[Orig])],Cam,Custo).
+aStar2(Dest,[(_,Custo,[Dest|T])|_],Cam,Custo):-
+    reverse([Dest|T],Cam).
+aStar2(Dest,[(_,Ca,LA)|Outros],Cam,Custo):-
+    LA=[Act|_],
+    findall((CEX,CaX,[X|LA]),
+    (Dest\==Act,edge(Act,X,CustoX),\+ member(X,LA),
+    CaX is CustoX + Ca, estimativa(X,Dest,EstX),
+    CEX is CaX +EstX),Novos),
+    append(Outros,Novos,Todos),
+    sort(Todos,TodosOrd),
+    aStar2(Dest,TodosOrd,Cam,Custo).
+
+2. Greedy/gulosa:
+    - Expande o node que parece ser o mais próximo do objetivo.
+    - com uma heurística decente dirige-se praticamente diretamente ao objetivo.
+    - Melhor caso com tempo e espaço lineares
+    - Não garante solução ótima.
+
+2.1 Implementação Greedy:
+/* solution(+Heuristic, +Goal, +Fringe, +Closed, -Solution) */
+solution(_Heuristic, Goal, [Node | _], Closed, Solution) :-
+    node(Node, State, ParentState, _FValue),
+    test(Goal, State),
+    extractSolution(ParentState, Closed, [State], Solution).
+solution(Heuristic, Goal, [Node | RestNodes], Closed, Solution) :-
+    nodeState(Node, State),
+    findall(NeighborNode,
+    newNeighborNode(State, Heuristic,[Node | Closed],
+    NeighborNode), NeighboringNodes),
+orderFringe(RestNodes, NeighboringNodes, NewFringe),
+solution(Heuristic, Goal, NewFringe, [Node | Closed], Solution).

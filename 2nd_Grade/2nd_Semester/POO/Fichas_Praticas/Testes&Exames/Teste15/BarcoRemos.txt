@@ -1,0 +1,5 @@
+package Teste15;
+
+public class BarcoRemos {
+    private double largura;
+}

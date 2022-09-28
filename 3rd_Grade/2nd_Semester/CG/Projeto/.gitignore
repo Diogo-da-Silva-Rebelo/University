@@ -1,0 +1,32 @@
+Phase I/*
+.vs/*
+.vscode/*
+.idea/*
+Phase I/.idea/*
+Phase I/Engine/.idea/*
+Phase I/Engine/cmake-build-debug/*
+Phase I/Generator/.idea/*
+Phase I/Generator/cmake-build-debug/*
+Phase I/Generator/build/*
+Phase II/.idea/*
+Phase II/Engine/.idea/*
+Phase II/Engine/cmake-build-debug/*
+Phase II/Generator/.idea/*
+Phase II/Generator/cmake-build-debug/*
+Phase II/Generator/build/*
+Phase III/.idea/*
+Phase III/Engine/.idea/*
+Phase III/Engine/cmake-build-debug/*
+Phase III/Generator/.idea/*
+Phase III/Generator/cmake-build-debug/*
+Phase III/Generator/build/*
+Phase III/dadosPlanetas.txt
+Phase III/out.txt
+Phase IV/.idea/*
+Phase IV/Engine/.idea/*
+Phase IV/Engine/cmake-build-debug/*
+Phase IV/Generator/.idea/*
+Phase IV/Generator/cmake-build-debug/*
+Phase IV/Generator/build/*
+Phase IV/dadosPlanetas.txt
+Phase IV/out.txt

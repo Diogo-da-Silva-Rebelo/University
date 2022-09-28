@@ -1,0 +1,88 @@
+package Teste15;
+
+import java.util.List;
+
+public class BarcoHibrido extends Barco{
+    //a)
+    private double capacidadeBateria;
+    private double potenciaEletrica;
+    private double autonomiaEletrica;
+
+    //4
+    private double largura;
+    private boolean seguro;
+    private double valorSeguro;
+
+    public double getCapacidadeBateria() {
+        return capacidadeBateria;
+    }
+
+    public void setCapacidadeBateria(double capacidadeBateria) {
+        this.capacidadeBateria = capacidadeBateria;
+    }
+
+    public double getPotenciaEletrica() {
+        return potenciaEletrica;
+    }
+
+    public void setPotenciaEletrica(double potenciaEletrica) {
+        this.potenciaEletrica = potenciaEletrica;
+    }
+
+    public double getAutonomiaEletrica() {
+        return autonomiaEletrica;
+    }
+
+    public void setAutonomiaEletrica(double autonomiaEletrica) {
+        this.autonomiaEletrica = autonomiaEletrica;
+    }
+
+    public boolean isSeguro() {
+        return seguro;
+    }
+
+    public void setSeguro(boolean seguro) {
+        this.seguro = seguro;
+    }
+
+    public double getValorSeguro() {
+        return valorSeguro;
+    }
+
+    public void setValorSeguro(double valorSeguro) {
+        this.valorSeguro = valorSeguro;
+    }
+
+    public double getLargura() {
+        return this.largura;
+    }
+
+    public void setLargura(double largura) {
+        this.largura = largura;
+    }
+
+    //construtor parametrizado
+    public BarcoHibrido(String id, double milhas, String categoria,
+                        double autonomia, Pessoa skipper, Set<Pessoa> tripulantes,
+                        List<RegistoEtapa> registos, double capacidadeBateria,
+                        double potenciaEletrica, double autonomiaEletrica) {
+        super(id, milhas, categoria, autonomia, skipper, tripulantes, registos);
+        this.capacidadeBateria = capacidadeBateria;
+        this.potenciaEletrica = potenciaEletrica;
+        this.autonomiaEletrica = autonomiaEletrica;
+    }
+
+    //toString
+    public String toString(){
+        StringBuilder s = new StringBuilder(super.toString());
+        s.append("Capacidade da Bateria: " + this.getCapacidadeBateria() + "\n");
+        s.append("Potencia eletrica: " + this.getPotenciaEletrica() + "\n");
+        s.append("Autonomia eletrica: " + this.getAutonomiaEletrica() + "\n");
+        s.append("Autonomia eletrica: " + this.getAutonomiaEletrica() + "\n");
+        return s.toString();
+    }
+
+    public double getAutonomia(){
+        return (getAutonomiaEletrica() + super.getAutonomia());
+    }
+}

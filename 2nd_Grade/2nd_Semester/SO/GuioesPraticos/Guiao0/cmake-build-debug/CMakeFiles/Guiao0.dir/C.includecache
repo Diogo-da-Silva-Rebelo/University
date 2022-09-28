@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/diogo/CLionProjects/Guiao0/API.h
+
+/home/diogo/CLionProjects/Guiao0/main.c
+stdio.h
+-
+stdlib.h
+-
+API.h
+/home/diogo/CLionProjects/Guiao0/API.h
+

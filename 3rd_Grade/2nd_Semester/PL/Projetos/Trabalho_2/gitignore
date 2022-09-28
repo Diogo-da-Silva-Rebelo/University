@@ -1,0 +1,5 @@
+.gitignore
+__pycache__/
+__pycache__/lexer.cpython-310.pyc
+venv/
+.idea/

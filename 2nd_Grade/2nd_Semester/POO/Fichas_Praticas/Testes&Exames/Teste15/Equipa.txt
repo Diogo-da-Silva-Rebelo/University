@@ -1,0 +1,54 @@
+package Teste15;
+
+import java.util.Map;
+
+public class Equipa {
+    private String nome;
+    private Map<String,Barco> barcos;
+
+    public String getNome(){
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Map<String, Barco> getBarcos() {
+        return this.barcos;
+    }
+
+    public void setBarcos(Map<String, Barco> barcos) {
+        this.barcos = barcos;
+    }
+
+    //a)
+    double totalEmProva(String idBarco){
+        Barco b = this.barcos.get(idBarco).clone();
+        double total = 0.0;
+        double duracao = 0.0;
+
+        for (RegistoEtapa r: b.getEtapas()){
+            duracao = (double) (r.getFim().getTimeInMillis() - r.getInicio().getTimeInMillis());
+            duracao = duracao / 1000;
+            duracao = duracao / 3600;
+            total += duracao;
+        }
+        return total;
+    }
+
+    //b)
+    double registoMaisLongo(){
+        double maior_duracao = 0.0;
+        double duracao = 0.0;
+        for(Barco b: this.getBarcos().values()){
+            for(RegistoEtapa r : b.getEtapas()){
+                duracao = r.getMilhasPercorridas();
+                if (duracao > maior_duracao){
+                    duracao = maior_duracao;
+                }
+            }
+        }
+        return maior_duracao;
+    }
+}

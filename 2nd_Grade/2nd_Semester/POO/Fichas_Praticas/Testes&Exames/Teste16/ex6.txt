@@ -1,0 +1,22 @@
+Iteradores internos vs Iteradores externos:
+
+Iteradores Externos:
+-> Uso de Iterators, Enumerators, "enhanced loops";
+-> ciclos for/while que se utiliza normalmente;
+-> O programador controla as iterações;
+-> É um iterador mais fléxivel (Ex: operações em duas coleções num único ciclo);
+
+Iteradores Internos:
+-> streams, etc;
+-> É o próprio iterador que controla as iterações e como elas avançam!;
+-> Mais aconselhavel, pois há menos erros;
+
+Vantagens de Iteradores internos:
+-> Código mais fácil de ler e perceber;
+-> Código mais curto (em iterações chegam 1 ou 2 linhas);
+-> Implementação mais simples, com menos defeitos ou possibilidades de erro no código
+(código escrito pelo programador é reduzido), bugs de código são evitados;
+
+Vantagens de Iteradores externos:
+-> Maior controlo sob cada iteração, ou processo de iteração de ciclo;
+-> Mais adequados para realizar algum tipo de verificação ou operação particular num dado índice;

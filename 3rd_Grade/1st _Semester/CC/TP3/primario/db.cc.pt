@@ -1,0 +1,44 @@
+$ORIGIN cc.pt.
+$TTL    604800
+@       IN      SOA     ns.cc.pt.	 g49pl04@cc.pt. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+
+;LAN2
+@		IN      NS      Servidor1
+Servidor1	IN	A	10.2.2.1
+@		IN	MX	5	Servidor2
+Servidor2	IN	A	10.2.2.2
+@		IN	MX	10	Servidor3
+Servidor3	IN	A	10.2.2.3
+
+;Alias
+ns	IN	CNAME	Servidor1
+ns2	IN	CNAME	Golfinho
+www	IN	CNAME	Servidor2
+mail	IN	CNAME	Servidor2
+pop	IN	CNAME	Servidor3
+imap	IN	CNAME	Servidor3
+g49		IN	CNAME	Portatil1
+
+;LAN1
+Portatil1	IN	A	10.1.1.1
+Portatil2	IN	A	10.1.1.2
+Portatil3	IN	A	10.1.1.3
+
+;LAN4
+Grilo		IN	A	10.4.4.1
+Cigarra		IN	A	10.4.4.2
+Vespa		IN	A	10.4.4.3
+
+
+;LAN3
+@		IN	NS	Orca
+Orca		IN	A	10.3.3.1
+@		IN	NS	Foca
+Foca		IN	A	10.3.3.3
+@		IN      NS      Golfinho
+Golfinho	IN	A	10.3.3.2

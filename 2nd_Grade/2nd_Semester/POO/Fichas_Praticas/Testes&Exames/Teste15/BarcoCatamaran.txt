@@ -1,0 +1,7 @@
+package Teste15;
+
+public class BarcoCatamaran extends Barco {
+    private double areaVela;
+    private boolean seguro;
+    private double valorSeguro;
+}

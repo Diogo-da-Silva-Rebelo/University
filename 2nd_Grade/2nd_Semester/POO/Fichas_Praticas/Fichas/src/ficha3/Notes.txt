@@ -1,0 +1,27 @@
+- há dois tipos de objetos:
+ -> objetos instância (new) que são instâncias de objetos classe (guardam a definição e comportamento dos objetos instância);
+ -> cada instância dos objetos classe tem um estado!
+- Objetos : objetos de instância;
+- Classes: objetos de classe;
+- O construtor tem o mesmo nome da classe e sem valor e retorno (são métodos de instância);
+- variáveis de instância (com private);
+- get's e set's vão-nos permitir aceder às variáveis de instância!
+- métodos por omissão equals, toString e Clone;
+- métodos static aplica-se a classes!!! Mas é algo que todos os métodos tem em comum
+
+- Construtores não levam "Class", só public ou prvate!
+- primeiros métodos a definir são get's e set's!
+
+- Equals vai redefinir a noção de igualdade em java. Pois, em java, dois objetos só são iguais se forem os mesmo objeto
+em memória. Logo, se tivermos a = Ponto(0,0)
+                              b = Ponto(0,0)
+                              False!!
+- Ao definir Equals, a relação anterior, já vai ser True!
+- Em java, por omissão, a=: a.clone(c) é FALSE e queremos que seja TRUE
+- NUm método de instância quero alterar as variâncias da instância!! e não as que recebemos como argumentos!
+
+- objetos vs classes
+Só temos objetos de instância;
+Classe é uma definição do que é uma instância
+1 - definimos o código da classe; (objeto sem instâncias): código
+2 - criamos objetos de instância criam-se com new!! e depois vamos mudar as variáveis de instância (private ...) desse objeto!!

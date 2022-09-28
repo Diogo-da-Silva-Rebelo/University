@@ -1,0 +1,6 @@
+public class Candidato {
+...
+public String getNome () {...}
+public int getIdade () {...}
+...
+}

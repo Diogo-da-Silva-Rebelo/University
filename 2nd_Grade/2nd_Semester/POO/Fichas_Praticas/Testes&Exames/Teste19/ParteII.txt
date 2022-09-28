@@ -1,0 +1,130 @@
+-> Preço por dia depende do preço base para casa imóvel;
+---> Apartamento: preço Dia = preço base * fator de qualidade;
+---> Moradia: preço Dia = preço base *(0.3 * area Privativa + 0.7 * area exterior);
+---> Bungalow: preço base * (0.5 * fator de qualidade + 0.5 * expessura de paredes);
+
+(a)
+Há uma forma diferente, para cada tipo de imóvel, de calcular o preço base, logo, este método
+tem de estar definido em cada classe de Imóvel (Apartamento, Moradia & Bungalow, classes com "extends Imovel").
+
+public class Apartamento extends Imovel{
+(...)
+
+    public double precoDia(){
+        return (getPrecoBase * (this.factorQualidade));
+        }
+
+(...)
+}
+
+public class Moradia extends Imovel{
+(...)
+
+    public double precoDia(){
+        return (getPrecoBase * (0.3 * areaPrivativa + 0.7 * areaExterior));
+        }
+
+(...)
+}
+
+public class Bungalow extends Imovel{
+(...)
+
+    public double precoDia(){
+        return (getPrecoBase * (0.5 * factorQualidade + 0.5 * expessuraParedes));
+        }
+
+(...)
+}
+
+(b)
+public class POOAirBnB implements Serializable{
+(...)
+
+    //Vamos ter de ir ao Map de Imoveis, percorrer até encontrarmos o imovel com o código dado.
+    public Imovel getImovel(String codImovel) throws ImovelNaoExistente{
+       try{
+       if (this.imoveis.contaisValue(codImovel) == TRUE){
+            return this.imoveis.get(codImovel);
+            } else{
+                throw new ImovelNaoExistente();
+        }
+    }
+    } catch (ImovelNaoExistente e){
+        System.out.println(e.getMessage());
+    }
+
+(...)
+}
+
+//classe da exceção
+public class ImovelNaoExistente extends Exception{
+    public ImovelNaoExistente(){
+        super("Não existe esse Imóvel!");
+    }
+
+    public ImovelNaoExistente (String message){
+        super(message);
+        }
+}
+
+(c)
+Colocar este método na classe POOAirBnB.
+public double valorTotalALuguerCliente(String codClient) throws ClienteNaoExistente{
+   try{
+    Cliente c = this.clientes.get(codCLiente);
+    double total = 0.0;
+
+   //ALugueres: [Aluguer 1, Aluguer 2,...]
+   //[codCLiente1, codImovel1, datas1; codCliente2, codImovel2, datas2;...]
+
+    /*
+    0. getMeusAlugueres(); Iterar por cada elemento da lista;
+    0.1. Obter a diferença dos dias das datas;
+    1. Obter dias de aluguer;
+    2. Ver o tipo de imovel alugado e saber o preço por dia consoante esse imovel;
+    3. Calcular preço total por imovel;
+    4. Somar todos os alugueres.
+    */
+
+    if(c == null){
+        throw new ClienteNaoExistente("Não existe esse cliente");
+    } else {
+        for(Aluguer a : c.getMeusAlugueres()){
+            long diffDias = Math.abs(ChronoUnit.DAYS.between(a.getDataFim,a.getDataInicio);
+            Imovel i = a.getImovel(codCliente);
+            total += i.preçoDia() * diffDias;
+        }
+    }
+    } catch (ClienteNaoExistente e){
+        System.println("Cliente Inserido Não Existe!");
+    }
+    return total;
+}
+
+(d)
+public Map<String, Set<String>> clientesPorImovel(){
+    //Key: codCliente & Value : Set de imoveis alugados por ele (set de codImovel)
+
+    /* Ordem de ideias:
+    1. Obter clientes : clientes.values();
+    2. For (Para cada cliente) -> obter lista de alugueres;
+    3. For (Para cada aluguer) -> obter codImovel;
+    3.1 Colocar estes imóveis num SET.
+    4. colocar num Map < CodCliente, <CodImoveis>>;
+    */
+
+    Map<String, Set<String>> CPerSet = new HashMap<String,Set<String>>();
+    for (Cliente c : this.clientes.values()){
+        List<Aluguer> listA = c.getmeusAlugueres();
+        Set<String> CodImovelSet = new HashSet<>();
+        String clientCode = c.getCodClient();
+
+        for(ALuguer a : listaA){
+            String imovelCode = a.getCodImovel();
+            CodImovelSet.add(imovelCode);
+        }
+        CPerSet.put(clientCode,CodImovelSet);
+}
+    return CPerSet;
+}

@@ -1,0 +1,256 @@
+Conceitos Principais:
+
+POO T - 19 fev
+- Apresentação:
+    -> Teste teórico: 21/05/2021;
+    -> Exame: 14/06/2021;
+    -> Projeto: entrega eletrónica dia 12/06/2021;
+    -> Apresentação do projeto previstas para 21/06 até 26/06;
+    -> Entrega de 2 exercícios das fichas;
+    -> Perguntas em aulas TP e T (1 por aula teórica);
+
+- Projeto:
+    -> Grupos de 3 elementos, com relatório final;
+
+POO T - 22 fev
+- Estratégia predefinida "Top down": no início tudo é pouco definido, e por refinamento, vão-se encontrando mais detalhes.
+Neste modelo, temos:
+    -> Classe I: Algoritmos;
+    -> Classe II: Estruturas de dados;
+    -> As duas classes formam os nossos Programas;
+
+- A manutenção corretiva de programas reutilizados é muito mais trabalhosa e menos produtiva. Para melhorar, podemos:
+    -> Utilizar apontadores para qualquer coisa (*void), nos nossos tipos de dados;
+    -> Passar o tamanho do nodo (célula) do tipo de dados a utilizar;
+    -> Passar funções específicas a utilizar, como parâmetros (remove cabeça, comparação, etc.);
+    -> Assim, ao alterarmos os tipos de dados, não há problemas no nosso código.
+
+- Encapsulamento: Não devemos aceder diretamente aos dados, mas sim, às funcionalidades usadas com esses dados. No fundo,
+usando API, apenas sabemos a interface e a implementação está "escondida".
+
+- Métodos:
+    -> Criar módulo com o tipo de dados a manipular;
+    -> Criar dentro desse módulo as estruturas de dados e as funcionalidades que acedem a esses dados;
+    -> definir as operações de acesso a dados internos;
+    -> definir as operações de acesso a dados externos;
+    -> Não ter código de IO nas operações;
+    -> Ao utilizar os módulos, utilizar apenas a API.
+
+POO TP - 24 fev
+- Objeto: representação computacional de algo/entidade. É constituido por:
+    -> atributos;
+    -> é independente do contexto (pode ser reutilizado);
+    -> garante abstração de dados;
+    -> permite encapsulamento e modularidade (composição);
+    -> cada objeto é único (objetos podem ser iguais, mas tem uma identidade diferente);
+    -> tem atributos privados (estado);
+    -> têm um comportamento;
+    -> estes três últimos pontos definem aquilo que é um objeto!
+
+- Aos dados chamaremos variáveis de instância;
+- À operações chamaremos métodos de instância;
+- De uma forma gráfica, o encapsulamento pode ser visto como uma cápsula, que assegura a proteção de dados internos.
+
+Imaginando um quadro, temos:
+ -> 1.variáveis de instância (privados);
+ -> 2.métodos de instância públicos (funções computacionais);
+ -> 3.métodos de instância privados;
+- A interação entre objetos é feita com envio de mensagens (pedido de execução de um método e resposta com o retorno).
+
+O objeto só acede à API que o objeto 2 disponibilizar. Normalmente, quando queremos que um objeto faça qualquer coisa
+utilizamos sempre "frases":
+ -> objeto.m(); [colocamos o nome dado ao objeto] . [o que queremos que faça/retorne]
+ -> objeto.m(argl,...,argn); [objeto] . [ação com argumentos]
+ -> r=objeto.m();
+ -> r=objetvo.m(argl,...,argn); [Casos com retorno com e sem argumentos]
+ATENÇÃO: Não podemos aceder diretamente a variáveis de outros métodos!
+Ex: Não devemos inicializar variáveis usando objeto.var=NULL;
+Ex: Não devemos alterar diretamente variáveis, para isso, criamos um método que faz isso por nós e que já não acede
+diretamente a dados. Isto permite a existência de encapsulamento.
+
+- Objetos similares são definidos sempre no mesmo local (classe);
+
+- Classe: Local de definição comum a todos os objetos. A classe é um objeto, mas é de um tipo especial, tem o comporta
+mento, estado de um objeto. Pode ser visto como um padrão, um TIPO DE DADOS ABSTRATO. A classe existe primeiro que o
+objeto e é única! (Ex: a classe "carro" existe antes dos carros e é mais abrangente que o que a compõe!- instância).
+Reúne as características dos objetos que a compõem. O seu nome nunca depende dos objetos, é um nome bem definido. Assim,
+um objeto não é uma classe, mas uma classe é um objeto.
+- Por natureza, não misturamos "alhos com bugalhos", ou seja, objetos sem os mesmos atributos e com um comportamento di
+ferente não podem fazer parte da mesma classe!
+
+- Definição de uma classe:
+ -> identificar variáveis de instância (objetos);
+ -> identificar o conjunto de operações;
+- Ex: definição da classe "Ponto":
+      public class Ponto {
+      //variáveis de instância (objetos)
+      private int x;
+      private int y;
+      //Encapsulamento
+
+      //Construtores
+      this = objeto que cria a mensagem
+      // Ponto sem parâmetros:
+      public Ponto(int cx, int cy){
+      this.x = 0;
+      this.y = 0;
+      }
+
+      //Ponto com parâmetros:
+      public Pont(int cx, int cy){
+      this.x = cx;
+      this.y = cy;
+      }
+      // this.x = é a variável x do objeto que recebe a mensagem!
+
+      //Cópia do ponto:
+      public Ponto(Ponto umPonto){
+      this.x = umPonto.getX();
+      this.y = umPonto.getY();
+      }
+
+- A classe "Ponto" pode ser mais complexa, então, podemos definir mais métodos dentro desta classe. Em instâncias
+private, guardam-se os valores dessas variáveis.
+
+- Set x/y: update da coordenada em x e y;
+- Get x/y: obtém coordenadas de x ou y;
+
+POO T - 1 mar
+- Temos quantos construtures nós queiramos. Ainda no contexto da aula anterior;
+- Os construtores têm o nome da classe a que pertencem;
+- Um construtor de cópia permite criar um novo objeto do objeto passado como parâmetro;
+- Considere-se o acesso direto aos dados (que não deve ser feito!):
+
+ //Cópia do ponto:
+      public Ponto(Ponto umPonto){
+      this.x = umPonto.x [acedemos diretamente à coordenada x]
+      this.y = umPonto.y [acedemos diretamente à coordenada y]
+      }
+
+- Podemos ter dois objetos iguais, todavia, são objetos distintos!! Têm identidades/apontadores distintos.
+- Existência de métodos de instância = funcionalidades dos dados.
+    -> É o caso de:
+        -> Getx(...);
+        -> Gety(...);
+        -> Setx(...);
+        -> Sety(...); //atualizar coordenada com a que é passada.
+        -> Deslocamento(...);
+        -> somaPonto(...);
+        -> movePonto(...);
+        -> ePositivo(...);
+        -> distancia(...) : determina a distância entre o this e o ponto passado como parâmetro! Todos os métodos se
+        se enviam a um objeto:
+
+        public double distancia(Ponto umPonto){
+        return Math.sqrt(Math.pow(this.x - umPonto(), 2) + (Math.pow(this.y - umPonto.gety(), 2);
+        }
+- O código de um método é sempre executado no contexto do this. O método é sempre executado pelo objeto que recebeu a
+mensagem;
+
+- Tipos de Modificadores:
+    -> public - método acessivel a partir de qualquer classe;
+    -> private - apenas acessível dentro dessa classe específica;
+    -> protected - acessível nesse classe, ou classes dentro do mesmo package ou suclasses;
+    -> default - acessível a partir da classe ou de classe dentro desse package (subclasses não estão incluidas);
+
+- Forma de garantir encapsulamento, as variàveis de instância devem ser privadas!
+- Como fazer programas por objetos??
+    -> Análise de requisitos;
+    -> Determinar classes a construir;
+    -> Fazer modelo do sistema;
+    -> Ver arquitetura de classes;
+
+- Dependência: quando - Nome da clase uma classe precisa de um objetp de tipo de outra classe, há uma relação unidirecional (Gestor de
+aulas dá acesso à Sala).
+- Não devemos repetir associações nos atributos!!
+
+Introdução aos arrays em java:
+- Um array que contém em cada posição um aluno. O array será Aluno alunos[];
+- Há composição quando uma parte está incluida ou faz parte de outra (losango de composição).
+POO T - 5 mar
+-  Para o diagrama de uma Turma, temos:
+ -> uma classe Turma com vários métodos etiquetados como public ou private;
+ -> as variáveis de instância que são os atributos da turma;
+ -> Todas estas variáveis de instância são PRIVADAS e do tipo SIMPLES
+ -> Para além destas variáveis de instancia, temos uma outra que também é muito importante, que é a variável de instan
+ cia onde colecionamos as diversas instancias de objetos do tipo aluno que fazem parte do estado interno da turma. Para
+ isso temos outra classe com o nome ALuno onde são definidos os vários métodos.
+ -> Então, a turma tem uma variável de instancia que se chama alunos (privada (-)) e tem 0 ou mais instâncias aluno.
+ -> A variável de instancia alunos é privada e compostas por 0 ou mais instâncias de alunos;
+ -> O losango preto num diagrama especifica a relação de composição entre a turma e os alunos: isto significa que a turma
+ é dona dos objetos alunos. É a classe da turma de rege os seus alunos e não o contrário!
+ -> Estes objetos só são da classe Turma e não de mais ninguém.
+
+- Quando sabemos quando usar static ? Usa-se nos seguintes cenários:
+550
+
+Define static methods in the following scenarios only:
+ - If you are writing utility classes and they are not supposed to be changed.
+ - If the method is not using any instance variable.
+ - If any operation is not dependent on instance creation.
+ - If there is some code that can easily be shared by all the instance methods, extract that code into a static method.
+ - If you are sure that the definition of the method will never be changed or overridden. As static methods can not be overridden.
+
+ - Vamos transformar o diagrama fornecido em código!
+
+public class Turma {
+
+//variáveis de instância : { private String designação;
+                             private Aluno[] alunos; // aqui está a variável -alunos (0..*) que contém uma lista de
+                             alunos de uma determinada turma!
+
+                             private int capacidade;
+                             ...
+                             private static final int capacidade_initial 0 20; }
+-----------------------------------------------------------------------------------
+// Construtores dos objetos da Turma
+
+//inicialização da turma
+//construtor de cópia
+//Alterar o número de alunos da Turma
+--------------------------------------------------------------------
+//Métodos de instancia da turma
+
+// getDesignação
+// getCapacidade
+// getOcupação
+// getAlunos
+NÃO PODEMOS QUEBRAR A REGRA BASICA DE NÃO SE PODER ACEDER DIRETAMENTE A DADOS/AO ESTADO INTERNO DA VARIÁVEL!!!!!
+Então este método getALunos não pode ser publico! Uma alternativa seria colocar este método private!
+- Não posso alterar o estado de um objeto (turma) sem lhe ter enviado um método nesse sentido!!
+- Para isso envio uma CÓPIA new Aluno(umAluno). Não pode haver partilha de apontadores, mas sim cópia de objetos.
+- Para garantir encapsulamento.
+
+- O método Clone cria uma cópia do objeto a quem é enviado: se eu enviar um objeto x ao clone ele dá outro objeto que
+ não é o x => x.clone() ! = x (objeto dado é igual, com apontador distinto, e da mesma classe)
+- Simplesmente fazemos uma cópia do objeto que recebe a mensagem.
+
+- Formas de clonagem:
+ -> deep: copia com partilha de endereços (cria-se o novo array que em cada posição tem o apontador para a posição do outro array igual);
+ -> shallow: copio as estruturas de dados e não os conteúdos;
+
+ Só o deep clone permite encapsulamento!
+
+- Implementação de um método que compara dois alunos, implementação é dentro da classe ALuno!
+
+
+POO T - 8 mar
+- Ao imprimir um objeto, caso não tenhamos implementação, o java escreve por definição o nome da classe seguido de
+codigos em hex;
+- Strings em java são objetos emutáveis/ não dinâmicas;
+- Evitar utilizar String;
+- Utilizar StringBuilder!!
+- Implementar sempre um método equals daqui para a frente;
+- Se não tivermos nenhum dado/diagrama de classes -> assumimos que é composição e não agregação.
+- Só existe um objeto class por classe;
+
+POO T 15 mar
+- Iterador: método utilizado para percorrer todos os elementos de uma lista.
+- Para defini-lo é preciso:
+ -> forma de aceder a qualquer elemento;
+ -> forma de avançar o iterador;
+ -> forma de percorrer uma estutura de dados, sem recorrer à sua estrutura interna;
+- Com o iterator ganhamos com o facto de podermos visitar qualquer estrutura, sem saber o que se passa nela. Assim, pode
+-se mudar o tipo de dados e o código continua operacional.
+
+- Iteradores podem ser internos ou externos, consoante a procura se dê dentro ou fora da coleção.

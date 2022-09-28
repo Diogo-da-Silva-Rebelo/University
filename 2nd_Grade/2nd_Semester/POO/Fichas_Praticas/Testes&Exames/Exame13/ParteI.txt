@@ -1,0 +1,106 @@
+public class Comunicacao {
+private String remetente;
+private String destinatario;
+private GregorianCalendar data;
+...
+}
+
+public class Mensagem extends Comunicacao {
+private String assunto;
+private String texto;
+...
+}
+
+public class MsgMap {
+//string destinatario - mensagens recebidas ordenadas por ordem de chegada
+private TreeMap<String, ArrayList<Mensagem>> msgBox;
+...
+//1
+//a
+public MsgMap(MsgMap mapMessage){
+super(mapMessage);
+this.msgBox = mapMessage.getMsgBox();
+}
+
+//b
+//com iteradores externos
+public int tamanho(){
+int len = 0;
+for (ArrayList<Mensagem> messages : this.msgBox.values){
+    len + = messages.size();
+}
+return len;
+}
+
+//com iteradores externos
+public int tamanho(){
+int len = 0;
+int sizePerElem = this.msgBox.values().stream().size();
+len += sizePerElem;
+}
+
+//c
+public int quantosDe(String remetente){
+int sum = 0;
+for (ArrayList<Mensagem> messages : this.msg.Box().values()){
+    for (Mensagem m : messages){
+        if (m.getRemetente().equals(rementente)){
+           sum++;
+        }
+    }
+}
+return sum;
+}
+
+//d
+//com iteradores externos
+public void antiSpam(String palavra){
+for (ArrayList<Mensagem> messages : this.msg.Box().values()){
+    for (Mensagem m : messages){
+    m.removeIf(e -> e.getAssunto().equals(palavra));
+     }
+    }
+}
+
+//com iteradores internos
+public void antiSpam(String palavra){
+this.msg.Box().values().stream().removeIf(e -> e.getAssunto().equals(palavra));
+}
+
+//e
+//Função que cria uma lista com todas as mensagens
+public List<Mensagens> totalMensagens(Map<String, ArrayList<Mensagem>> msgBox){
+new List<Mensagem> newList = new ArrayList<>();
+for (ArrayList<Mensagem> msg : msgBox.values()){
+    newList.addAll(msg);
+}
+return newList;
+}
+
+public Map<String, List<Mensagem>> msgDeRemetente(){
+new Map<String,List<Mensagem>> newMap = new TreeMap<>();
+new ArrayList<Mensagem> allMessages = totalMensagens(this.msgBox);
+for (Mensagem m : allMessages)
+   List<Mensagem> mEnviadas = new ArrayList<>();
+
+   //guarda os remetentes já vistos
+   List <String> remetentes = new ArrayList<>();
+
+    if (remetentes.isEmpty()){
+        remetentes.add(m.getRemetente());
+       for (Mensagem f : allMessages){
+            if (m.getRemetente().equals(f.getRemetente())) mEnviadas.add(f.clone);
+        }
+        newMap.put(m.getRemetente(),mEnviadas);
+        }
+
+    if (!remetentes.contains(m.getRemetente()){
+        remetentes.add(m.getRemetente());
+        for (Mensagem f : allMessages){
+                    if (m.getRemetente().equals(f.getRemetente())) mEnviadas.add(f.clone);
+                }
+                newMap.put(m.getRemetente(),mEnviadas);
+         }
+         return newMap;
+ }
+}

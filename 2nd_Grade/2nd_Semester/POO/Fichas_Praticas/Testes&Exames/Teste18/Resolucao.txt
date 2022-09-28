@@ -1,0 +1,59 @@
+1.
+//Na classe SistemaTickets
+(a) public void adicionaTicket(Ticket t){
+    /* 1. Ir à lista ticketsPorResolver
+    2. Obter data do ticket e comparar com a do valor atual
+    3. Adicionar à lista
+    */
+
+//Método1
+    Collections.sort(tickets, new Comparator<Tickets>)(){
+        public int compare(Ticket t1, Ticket t2){
+        return t1.getHoraOcorrencia().compareTo(t2.getHoraOcorrencia());
+        }
+    }
+
+    this.ticketsPorResolver.stream().map(Ticket::clone).add.sort(c).collect(Collectors.toList);
+
+//Método2
+        for(Ticket t2: this.ticketsPorResolver){
+            if (t.getHoraOcorrencia() < t2.getHoraOcorrencia())
+                this.ticketsPorResolver.add(t.clone());
+        }
+
+//Método3
+        Comparator<Person> byAge = Comparator.comparing(Person::getAge);
+        Comparator<Person> byName = Comparator.comparing(Person::getName);
+        Collections.sort(persons, byAge.thenComparing(byName));
+}
+
+(b)
+public void resolveTicket(String ident) throws TecnicoNaoExisteException{
+    for(String tec : this.funcionarios.get(ident)){
+            if (tec == null) throw new TecnicoNaoExisteException();
+            //Tecnico t = this.funcionarios.values().stream().filter(x -> x.getIdent().equals(ident));
+            else {
+                Ticket tRes = this.ticketsPorResolver.get(0);
+                tRes.SetIdentTecnico(ident);
+                tRes.SetHoraFecho(LocalDate.now());
+                this.ticketsPorResolver.remove(get(0));
+                tec.setNumTickets(tec.getNumTickets()+1);
+            }
+            }
+}
+(c)
+public Map<String,List<Ticket> ticketsPorTecnico(){
+    Map<Ticket,List<Ticket>> new_map = new HashMap<>();
+    List<Ticket> ticketsList = new ArrayList<>();
+
+    for (String identTec : this.funcionarios.KeySet()){
+        for (Ticket t: this.ticketsResolvidos){
+            String tecID = t.getIdentTecnico);
+             if(identTec.equals(tecID)){
+                tickectsList.add(t.clone());
+             }
+             new_map.put(identTec,ticketsList);
+    }
+        return new_map;
+    }
+}
