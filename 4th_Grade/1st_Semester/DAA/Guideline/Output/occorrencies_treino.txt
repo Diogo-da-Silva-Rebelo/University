@@ -1,0 +1,126 @@
+Column: PassengerId
+1      1
+599    1
+588    1
+589    1
+590    1
+      ..
+301    1
+302    1
+303    1
+304    1
+891    1
+Name: PassengerId, Length: 891, dtype: int64
+--------------------------------------------------
+Column: Survived
+0    549
+1    342
+Name: Survived, dtype: int64
+--------------------------------------------------
+Column: Pclass
+3    491
+1    216
+2    184
+Name: Pclass, dtype: int64
+--------------------------------------------------
+Column: Name
+Braund, Mr. Owen Harris                     1
+Boulos, Mr. Hanna                           1
+Frolicher-Stehli, Mr. Maxmillian            1
+Gilinski, Mr. Eliezer                       1
+Murdlin, Mr. Joseph                         1
+                                           ..
+Kelly, Miss. Anna Katherine "Annie Kate"    1
+McCoy, Mr. Bernard                          1
+Johnson, Mr. William Cahoone Jr             1
+Keane, Miss. Nora A                         1
+Dooley, Mr. Patrick                         1
+Name: Name, Length: 891, dtype: int64
+--------------------------------------------------
+Column: Sex
+male      577
+female    314
+Name: Sex, dtype: int64
+--------------------------------------------------
+Column: Age
+24.00    30
+22.00    27
+18.00    26
+19.00    25
+28.00    25
+         ..
+36.50     1
+55.50     1
+0.92      1
+23.50     1
+74.00     1
+Name: Age, Length: 88, dtype: int64
+--------------------------------------------------
+Column: SibSp
+0    608
+1    209
+2     28
+4     18
+3     16
+8      7
+5      5
+Name: SibSp, dtype: int64
+--------------------------------------------------
+Column: Parch
+0    678
+1    118
+2     80
+5      5
+3      5
+4      4
+6      1
+Name: Parch, dtype: int64
+--------------------------------------------------
+Column: Ticket
+347082      7
+CA. 2343    7
+1601        7
+3101295     6
+CA 2144     6
+           ..
+9234        1
+19988       1
+2693        1
+PC 17612    1
+370376      1
+Name: Ticket, Length: 681, dtype: int64
+--------------------------------------------------
+Column: Fare
+8.0500     43
+13.0000    42
+7.8958     38
+7.7500     34
+26.0000    31
+           ..
+35.0000     1
+28.5000     1
+6.2375      1
+14.0000     1
+10.5167     1
+Name: Fare, Length: 248, dtype: int64
+--------------------------------------------------
+Column: Cabin
+B96 B98        4
+G6             4
+C23 C25 C27    4
+C22 C26        3
+F33            3
+              ..
+E34            1
+C7             1
+C54            1
+E36            1
+C148           1
+Name: Cabin, Length: 147, dtype: int64
+--------------------------------------------------
+Column: Embarked
+S    644
+C    168
+Q     77
+Name: Embarked, dtype: int64
+--------------------------------------------------
