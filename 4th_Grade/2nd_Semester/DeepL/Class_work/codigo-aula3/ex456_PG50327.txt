@@ -1,0 +1,57 @@
+Aula_PL_3.3
+
+4. Melhor modelo: Model2
++--------------------------+-----------------------+---------------------------------+----------------------+
+| Model                    | 2                     | 3                               | 4                    |
++--------------------------+-----------------------+---------------------------------+----------------------|
+| epochs                   | 15                    | 10                              | 15                   |
+| batch size               | 32                    | 64                              | 32                   |
+| learning rate            | 0.001                 | 0.01                            | 0.001                |
+| size splits (test,train) | 0.2, 0.8              | 0.2, 0.8                        | 0.2, 0.8             |
+| layers                   |(1,16),(16,32),(800,10)|(1,32),(32,64),(600,120),(120,10)|(5,32),(32,64),(8,1)  |
+| act. func                | relu;relu; None       | relu;relu;relu;sigmoid          | relu;relu;sigmoid    |
+| loss function            | CrossEntropyLoss      | BCEWithLogitsLoss               | CrossEntropyLoss     |
+| optimization function    | SGD                   | adam                            | SGD                  |
+| accuracy                 | 0.95                  | 0.92                            | 0.94                 |
++--------------------------+-----------------------+---------------------------------+----------------------+
+
+
+5.
+O melhor modelo encontrado foi: Model3
+Obs:  CNNModel_3 é o modelo mais profundo, 
+com 2 camadas convolucionais e 1 camada densa intermediária maior em relação aos outros modelos. 
+Este modelo pode ser mais capaz de extrair características complexas e abstratas dos dados, 
+o que pode levar a uma melhor performance. 
+Além disso, ele inclui camadas de normalização e dropout, que podem ajudar a reduzir overfitting. 
+
++--------------------------+-----------------------+---------------------------------+----------------------+
+| Model                    | 2                     | 3                               | 4                    |
++--------------------------+-----------------------+---------------------------------+----------------------|
+| epochs                   | 15                    | 20                              | 15                   |
+| batch size               | 32                    | 60                              | 32                   |
+| learning rate            | 0.001                 | 0.01                            | 0.001                |
+| size splits (test,train) | 0.3, 0.7              | 0.3, 0.7                        | 0.3, 0.7             |
+| layers                   |(1,16),(16,32),(800,10)|(1,32),(32,64),(600,120),(120,10)|(5,32),(32,64),(8,1)  |
+| act. func                | relu;relu; None       | relu;relu;relu;sigmoid          | relu;relu;sigmoid    |
+| loss function            | CrossEntropyLoss      | BCEWithLogitsLoss               | CrossEntropyLoss     |
+| optimization function    | SGD                   | adam                            | SGD                  |
+| accuracy                 | 0.94                  | 0.95                            | 0.93                 |
++--------------------------+-----------------------+---------------------------------+----------------------+
+
+6.
+
+Melhor modelo:  Model4.
+
++--------------------------+-----------------------+---------------------------------+----------------------+
+| Model                    | 2                     | 3                               | 4                    |
++--------------------------+-----------------------+---------------------------------+----------------------|
+| epochs                   | 20                    | 10                              | 15                   |
+| batch size               | 128                   | 64                              | 64                   |
+| learning rate            | 0.001                 | 0.001                           | 0.001                |
+| size splits (test,train) | 0.2, 0.8              | 0.2, 0.8                        | 0.2, 0.8             |
+| layers                   |(1,16),(16,32),(800,10)|(1,32),(32,64),(600,120),(120,10)|(5,32),(32,64),(8,1)  |
+| act. func                | relu;relu; None       | relu;relu;relu;sigmoid          | relu;relu;sigmoid    |
+| loss function            | CrossEntropyLoss      | BCEWithLogitsLoss               | CrossEntropyLoss     |
+| optimization function    | SGD                   | adam                            | SGD                  |
+| accuracy                 | 0.83                  | 0.71                            | 0.85                 |
++--------------------------+-----------------------+---------------------------------+----------------------+

@@ -1,0 +1,108 @@
+
+Aula_PL_3.2
+Como parâmetros iniciais usou-se os que estavam já presentes no notebook.
+
+1.
+Alteração para StratK, mudança de hiperparâmetros:
++--------------------------+--------------------+--------------------+
+| Parameter                | Before StratK      | After StratK       |
++--------------------------+--------------------+--------------------+
+| epochs                   | 50                 | 50                 |
+| batch size               | 64                 | 64                 |
+| learning rate            | 0.001              | 0.001              |
+| size splits (test,train) | 0.33, 0.67         | 0.33, 0.67         |
+| layers                   |(34,10),(10,8),(8,1)|(34,10),(10,8),(8,1)|
+| act. func                | relu;relu;sigmoid  | relu;relu;sigmoid  |
+| loss function            | BCEWithLogitsLoss  | BCEWithLogitsLoss  |
+| optimization function    | adam               | adam               |
+| accuracy                 | 0.79               | 0.821              |
++--------------------------+--------------------+--------------------+
+
+Alteração do número de epochs, batch_size e learning_rate:
++--------------------------+--------------------+--------------------+
+| Parameter                | Before             | After (with STK)   |
++--------------------------+--------------------+--------------------+
+| epochs                   | 50                 | 60                 |
+| batch size               | 64                 | 50                 |
+| learning rate            | 0.001              | 0.01               |
+| size splits (test,train) | 0.33, 0.67         | 0.33, 0.67         |
+| layers                   |(34,10),(10,8),(8,1)|(34,10),(10,8),(8,1)|
+| act. func                | relu;relu;sigmoid  | relu;relu;sigmoid  |
+| loss function            | BCEWithLogitsLoss  | BCEWithLogitsLoss  |
+| optimization function    | adam               | adam               |
+| accuracy                 | 0.79               | 0.946              |
++--------------------------+--------------------+--------------------+
+
+2. 
+Adição de mais camadas:
++--------------------------+--------------------------+-------------------------+
+| Parameter                | Before                   | After                   |
++--------------------------+--------------------------+-------------------------+
+| epochs                   | 50                       | 50                      |
+| batch size               | 32                       | 32                      |
+| learning rate            | 0.01                     | 0.01                    |
+| size splits (test,train) | 0.33, 0.67               | 0.33, 0.67              |
+| layers                   |(4,10),(10,8),(8,3)       |(4,10),(10,8),(8,5),(5,3)|
+| act. func                | relu;relu;softmax        | relu;relu;relu;softmax  |
+| loss function            | CrossEntropyLoss         | CrossEntropyLoss        |
+| optimization function    | SGD                      | SGD                     |
+| accuracy                 | 0.720                    | 0.960                   |
++--------------------------+--------------------------+-------------------------+
+
+Mudança de hiperparâmetros (com a MLP anterior)
++--------------------------+--------------------------+-------------------------+
+| Parameter                | Before                   | After                   |
++--------------------------+--------------------------+-------------------------+
+| epochs                   | 50                       | 70                      |
+| batch size               | 32                       | 30                      |
+| learning rate            | 0.01                     | 0.01                    |
+| size splits (test,train) | 0.33, 0.67               | 0.33, 0.67              |
+| layers                   |(4,10),(10,8),(8,3)       |(4,10),(10,8),(8,5),(5,3)|
+| act. func                | relu;relu;softmax        | relu;relu;relu;softmax  |
+| loss function            | CrossEntropyLoss         | CrossEntropyLoss        |
+| optimization function    | SGD                      | SGD                     |
+| accuracy                 | 0.720                    | 0.80                    |
++--------------------------+--------------------------+-------------------------+
+
+
+3.
+MNIST 3.1
+Adição de novas imagens através de transformações:
+- transforms.RandomAffine(degrees=(-30,30), scale=(0.8,1.2));
+- transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.2);
++--------------------------+--------------------------+-------------------------+
+| Parameter                | Before                   | After                   |
++--------------------------+--------------------------+-------------------------+
+| epochs                   | 50                       | 50                      |
+| batch size               | 32                       | 32                      |
+| learning rate            | 0.001                    | 0.01                    |
+| size splits (test,train) | 0.33, 0.67               | 0.33, 0.67              |
+| layers                   |(784,20),(20,20),(20,10)  |(784,20),(20,20),(20,10) |
+| act. func                | relu;relu;softmax        | relu;relu;relu;softmax  |
+| loss function            | CrossEntropyLoss         | CrossEntropyLoss        |
+| optimization function    | adam                     | adam                    |
+| accuracy                 | 0.487                    | 0.75                    |
++--------------------------+--------------------------+-------------------------+
+
+MNIST 3.2
+Obs: Ajuste de hiperparâmetros não melhorou significativamente.
+A arquitetura MLP não é a melhor para estes dados.
+Então, aumentamos  número de camadas da rede.
+
+Ajuste de hiperparâmetros e aumento do número de camadas:
++--------------------------+--------------------------+--------------------------+
+| Parameter                | Before                   | After                    |
++--------------------------+--------------------------+--------------------------+
+| epochs                   | 40                       | 70                       |
+| batch size               | 32                       | 50                       |
+| learning rate            | 0.001                    | 0.001                    |
+| size splits (test,train) | 0.33, 0.67               | 0.33, 0.67               |
+| layers                   |(784,20),(20,20),(20,10)  |(784,128),(128,64),(64,32)|
+|                          |                          |(32,16),(16,10),(10,10)   |
+| act. func                | relu;relu;...;softmax    | relu;relu;...;softmax    |
+| loss function            | CrossEntropyLoss         | CrossEntropyLoss         |
+| optimization function    | adam                     | adam                     |
+| accuracy                 | 0.200                    | 0.50                     |
++--------------------------+--------------------------+--------------------------+
+
+Este tipo de rede parece não ser o melhor.
