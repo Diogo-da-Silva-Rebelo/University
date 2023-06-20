@@ -1,0 +1,24 @@
+Route 1: Praceta do Vilar
+Distance: 0.5 km
+Duration: 3 mins
+
+Step 1: Head <b>southwest</b> on <b>R. dos Peões</b> toward <b>R. dos Lusíadas</b>
+Distance: 38 m
+Duration: 1 min
+
+Step 2: Turn <b>right</b> onto <b>R. dos Lusíadas</b>
+Distance: 72 m
+Duration: 1 min
+
+Step 3: Turn <b>right</b> onto <b>R. Nova de Santa Cruz</b>
+Distance: 79 m
+Duration: 1 min
+
+Step 4: Turn <b>left</b> onto <b>R. do Vilar</b>
+Distance: 53 m
+Duration: 1 min
+
+Step 5: Turn <b>right</b> onto <b>Praceta do Vilar</b>
+Distance: 0.3 km
+Duration: 1 min
+

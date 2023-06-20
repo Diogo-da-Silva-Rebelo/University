@@ -1,0 +1,29 @@
+.backimage-container {
+    background: url("../../images/santuario-do-bom-jesus.jpeg") no-repeat fixed center;
+    height: 95vh;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.2);
+    background-size: cover;
+    position: relative;
+    z-index: -2;
+}
+
+.backimage-container > h1 {
+    color: #fff;
+    font-size: 100px;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.backimage-container > p {
+    margin-top: 8px;
+    color: #fff;
+    font-size: 32px;
+    justify-content: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans', 'Unicode', 'Lucida Grande', 'Lucida Sans', 'Source Sans Pro', serif;
+}

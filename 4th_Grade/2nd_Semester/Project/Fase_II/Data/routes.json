@@ -1,0 +1,166 @@
+[
+  {
+    "bounds": {
+      "northeast": {
+        "lat": 41.5630623,
+        "lng": -8.3932606
+      },
+      "southwest": {
+        "lat": 41.5566879,
+        "lng": -8.4000561
+      }
+    },
+    "copyrights": "Map data ©2023",
+    "legs": [
+      {
+        "distance": {
+          "text": "1.1 km",
+          "value": 1080
+        },
+        "duration": {
+          "text": "4 mins",
+          "value": 212
+        },
+        "end_address": "R. da Universidade, 4710 Braga, Portugal",
+        "end_location": {
+          "lat": 41.5630623,
+          "lng": -8.3932606
+        },
+        "start_address": "R. dos Peões, 4710 Braga, Portugal",
+        "start_location": {
+          "lat": 41.5569271,
+          "lng": -8.3989084
+        },
+        "steps": [
+          {
+            "distance": {
+              "text": "38 m",
+              "value": 38
+            },
+            "duration": {
+              "text": "1 min",
+              "value": 17
+            },
+            "end_location": {
+              "lat": 41.5566879,
+              "lng": -8.3992307
+            },
+            "html_instructions": "Head <b>southwest</b> on <b>R. dos Peões</b> toward <b>R. dos Lusíadas</b>",
+            "polyline": {
+              "points": "yqs|Fdlgr@LRNTPT"
+            },
+            "start_location": {
+              "lat": 41.5569271,
+              "lng": -8.3989084
+            },
+            "travel_mode": "DRIVING"
+          },
+          {
+            "distance": {
+              "text": "72 m",
+              "value": 72
+            },
+            "duration": {
+              "text": "1 min",
+              "value": 32
+            },
+            "end_location": {
+              "lat": 41.5568694,
+              "lng": -8.4000561
+            },
+            "html_instructions": "Turn <b>right</b> onto <b>R. dos Lusíadas</b>",
+            "maneuver": "turn-right",
+            "polyline": {
+              "points": "ips|Fdngr@E\\YvBCN"
+            },
+            "start_location": {
+              "lat": 41.5566879,
+              "lng": -8.3992307
+            },
+            "travel_mode": "DRIVING"
+          },
+          {
+            "distance": {
+              "text": "0.2 km",
+              "value": 220
+            },
+            "duration": {
+              "text": "1 min",
+              "value": 56
+            },
+            "end_location": {
+              "lat": 41.5580812,
+              "lng": -8.398007699999999
+            },
+            "html_instructions": "Turn <b>right</b> onto <b>R. Nova de Santa Cruz</b>",
+            "maneuver": "turn-right",
+            "polyline": {
+              "points": "mqs|Fjsgr@KQeAiBKQ]o@kB_DGc@AW"
+            },
+            "start_location": {
+              "lat": 41.5568694,
+              "lng": -8.4000561
+            },
+            "travel_mode": "DRIVING"
+          },
+          {
+            "distance": {
+              "text": "0.5 km",
+              "value": 482
+            },
+            "duration": {
+              "text": "1 min",
+              "value": 58
+            },
+            "end_location": {
+              "lat": 41.56067789999999,
+              "lng": -8.3936429
+            },
+            "html_instructions": "At the roundabout, take the <b>2nd</b> exit onto <b>R. da Estrada Nova</b>/<wbr/><b>N103</b>",
+            "maneuver": "roundabout-right",
+            "polyline": {
+              "points": "_ys|Fpfgr@@C@A?A@A@C?A@C?A@C?C?C?C?C?C?C?CACAC?AACACAAAAACCAA?AAAAC?AAA?C?e@[USOKg@i@eBuDEIo@uAg@cA_@y@Q_@GQq@}Aw@eBSa@"
+            },
+            "start_location": {
+              "lat": 41.5580812,
+              "lng": -8.398007699999999
+            },
+            "travel_mode": "DRIVING"
+          },
+          {
+            "distance": {
+              "text": "0.3 km",
+              "value": 268
+            },
+            "duration": {
+              "text": "1 min",
+              "value": 49
+            },
+            "end_location": {
+              "lat": 41.5630623,
+              "lng": -8.3932606
+            },
+            "html_instructions": "Turn <b>left</b> onto <b>R. da Universidade</b>",
+            "maneuver": "turn-left",
+            "polyline": {
+              "points": "git|Ffkfr@KBe@AOAe@EQAUC[EUEC?QEMAIAQEUE}@Ie@AK?[AIAOAKEQE"
+            },
+            "start_location": {
+              "lat": 41.56067789999999,
+              "lng": -8.3936429
+            },
+            "travel_mode": "DRIVING"
+          }
+        ],
+        "traffic_speed_entry": [],
+        "via_waypoint": []
+      }
+    ],
+    "overview_polyline": {
+      "points": "yqs|Fdlgr@\\h@PTE\\]fCqA{Bi@aAkB_DGc@?[@CDK@MC]QSICi@[e@_@g@i@eBuDu@_BgA}BYq@iBcESa@KBu@Cw@GkAO{@OsAOq@Ae@C[GQE"
+    },
+    "summary": "R. da Estrada Nova/N103",
+    "warnings": [],
+    "waypoint_order": []
+  }
+]

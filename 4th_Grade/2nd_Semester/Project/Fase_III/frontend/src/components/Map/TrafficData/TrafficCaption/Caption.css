@@ -1,0 +1,59 @@
+.caption {
+    position: absolute;
+    top: 340px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    opacity: 0;
+    width: 200px;
+    height: 200px;
+}
+
+.caption-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.caption-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.caption-color {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.caption-show {
+    opacity: 1;
+    transform: translateX(0%);
+}
+
+.green-light {
+    background-color: #94d82d;
+}
+
+.green-dark {
+    background-color: #72bc25;
+}
+
+.yellow {
+    background-color: #ffd324;
+}
+
+.orange {
+    background-color: #ff8c1a;
+}
+
+.red {
+    background-color: #ff4f4f;
+}

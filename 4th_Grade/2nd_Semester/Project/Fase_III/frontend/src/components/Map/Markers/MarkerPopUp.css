@@ -1,0 +1,35 @@
+.marker-popup {
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.marker-popup h3 {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
+
+.marker-popup ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.marker-popup li {
+    align-items: center;
+    display: flex;
+    margin-bottom: 5px;
+    margin-left: 12px;
+}
+
+.marker-popup img {
+    height: 24px;
+    width: 24px;
+    margin-right: 20px;
+}
+
+.marker-popup p {
+    margin-top: 16px;
+    margin-bottom: 10px;
+}
