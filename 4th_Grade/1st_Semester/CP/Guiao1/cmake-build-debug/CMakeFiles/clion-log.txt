@@ -1,4 +1,0 @@
-/home/purp/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/purp/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/ninja/linux/ninja -G Ninja -S /home/purp/CLionProjects/University/4th_Grade/1st_Semester/CP/Guiao1 -B /home/purp/CLionProjects/University/4th_Grade/1st_Semester/CP/Guiao1/cmake-build-debug
--- Configuring done
--- Generating done
--- Build files have been written to: /home/purp/CLionProjects/University/4th_Grade/1st_Semester/CP/Guiao1/cmake-build-debug

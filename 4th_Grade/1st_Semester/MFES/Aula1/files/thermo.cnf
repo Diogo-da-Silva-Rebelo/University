@@ -1,8 +1,0 @@
-c T - ar condicionado Thermo
-c B - bateria alta capacidade
-c G - motor gasolina 3.2L
-
-c Representações:
-c CERTA: T -> B ou G = -T ou B ou G
-c ERRADA: T -> B ou -G =
-c CERTA: T e -G -> B =

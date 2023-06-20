@@ -1,3 +1,0 @@
-/home/purp/CLionProjects/University/4th_Grade/1st_Semester/CP/Guiao1/cmake-build-debug/CMakeFiles/Guiao1.dir
-/home/purp/CLionProjects/University/4th_Grade/1st_Semester/CP/Guiao1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/purp/CLionProjects/University/4th_Grade/1st_Semester/CP/Guiao1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
